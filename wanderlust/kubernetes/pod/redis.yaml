@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: redis-pod
+  labels:
+    name: wanderlust
+spec:
+  containers:
+  - name: redis
+    image: redis:alpine
+    resources:
+      limits:
+        memory: "64Mi"
+        cpu: "128m"
+    ports:
+      - containerPort: 6379
