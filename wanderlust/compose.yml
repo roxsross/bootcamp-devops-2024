@@ -1,21 +1,23 @@
 services:
-  backend: 
+  backend:
     build: ./backend
     container_name: backend
-    image: roxsross12/wandelust:backend-1.0.0 
+    image: roxsross12/wandelust:backend-1.0.0
     environment:
       - MONGODB_URI=mongodb://mongodb/wanderlust
       - REDIS_URL=redis:6379
+    env_file:
+      - ./backend/.env
     ports:
       - 5000:5000
     depends_on:
       - mongodb
       - redis
 
-  frontend: 
+  frontend:
     build: ./frontend
     container_name: frontend
-    image: roxsross12/wandelust:frontend-1.0.0 
+    image: roxsross12/wandelust:frontend-1.0.0
     environment:
       - VITE_API_PATH=http://localhost:5000
     ports:
@@ -23,17 +25,17 @@ services:
     depends_on:
       - backend
 
-  mongodb: 
+  mongodb:
     container_name: mongodb
-    image: mongo 
+    image: mongo
     volumes:
       - ./backend/data:/data
     ports:
       - 27017:27017
 
-  redis: 
+  redis:
     container_name: redis
-    image: redis:alpine 
+    image: redis:alpine
     ports:
       - 6379:6379
 
