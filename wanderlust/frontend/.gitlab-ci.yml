@@ -1,0 +1,94 @@
+default:
+  image: node:21-alpine
+  tags:
+    - roxsross
+
+stages:
+  - init
+  - test
+  - build
+  - security-sast
+  - deploy
+
+before_script:
+  - cd frontend
+
+services:
+  - name: docker:20.10.16-dind
+    alias: docker
+    command: ["--tls=false"]
+
+variables:
+  IMAGE_RUNNER: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
+  IMAGE_TAG: $CI_PROJECT_NAME:frontend-$CI_COMMIT_SHORT_SHA
+  REGISTRY_URL: roxsross12
+  DOCKER_HOST: tcp://localhost:2375
+  DOCKER_DRIVER: overlay2
+  DOCKER_TLS_CERTDIR: ""
+  EC2: 'true' 
+  EKS_REGION_1: 'false'
+
+init-deps:
+  stage: init
+  script:
+    - npm install
+
+unit-test:
+  stage: test
+  script:
+    - npm install 
+    - npm run test
+  allow_failure: true
+  
+gitleaks:
+  stage: test
+  image:
+    name: zricethezav/gitleaks
+    entrypoint: [""]
+  script:
+    - gitleaks detect --verbose --source .
+  allow_failure: true
+
+semgrep:
+  stage: test
+  image: returntocorp/semgrep
+  variables:
+    SEMGREP_RULES: p/javascript
+  script:
+    - semgrep ci
+  allow_failure: true
+
+build-image:
+  stage: build
+  image: $IMAGE_RUNNER
+  script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker build --tag $REGISTRY_URL/$IMAGE_TAG .
+    - docker push $REGISTRY_URL/$IMAGE_TAG
+
+deploy_ec2:
+  image: $IMAGE_RUNNER
+  stage: deploy
+  before_script:
+    - apt update -y > /dev/null 2>&1 && apt install openssh-client -y > /dev/null 2>&1
+    - chmod 400 $SSH_PRIVATE_KEY
+  script:
+    - sed -i 's/REPLACE/'"$CI_COMMIT_SHORT_SHA"'/g' frontend/docker-compose.front.yml   
+    - scp -i $SSH_PRIVATE_KEY -o StrictHostKeyChecking=no frontend/docker-compose.front.yml $SERVER_USER@$SERVER_IP:/home/$SERVER_USER
+    - ssh -i $SSH_PRIVATE_KEY -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker-compose -f docker-compose.front.yml up -d"
+  rules:
+    - if: $EC2=="true"
+      when: always
+    - if: $EKS_REGION_1=="true"
+      when: never
+
+deploy-k8s:
+  image: $IMAGE_RUNNER
+  stage: deploy
+  script:
+    - echo "deploy k8s"
+  rules:
+    - if: $EC2=="true"
+      when: never
+    - if: $EKS_REGION_1=="true"
+      when: always
