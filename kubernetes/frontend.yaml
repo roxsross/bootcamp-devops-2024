@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: front
-        image: roxsross12/wandelust:frontend-1.0.0
+        image: roxsross12/wanderlust:frontend-v1
         env: 
           # - name: VITE_API_PATH
           #   value: "http://backend:5000" 

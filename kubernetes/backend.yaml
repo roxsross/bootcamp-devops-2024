@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: roxsross12/wandelust:backend-1.0.0
+        image: roxsross12/wanderlust:backend-v1
         env:
         - name: MONGODB_URI
           value: "mongodb://mongodb/wanderlust"
