@@ -49,7 +49,7 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           VERSION: ${{ needs.version.outputs.version }}
           STATUS: "start"
-        run: ./scripts/notify.sh
+        run: ./scripts/notify.sh start
 
   ci-frontend:
     runs-on: ubuntu-latest
