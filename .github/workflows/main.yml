@@ -25,10 +25,14 @@ jobs:
         
   cd-frontend:
     runs-on: ubuntu-latest
-    needs: [ci-frontend]
+    needs: [ci-frontend, cd-backend]
     steps:
       - uses: actions/checkout@v4
-
+      - uses: docker/login-action@v3.3.0
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      
         
   ci-backend:
     runs-on: ubuntu-latest
@@ -54,3 +58,7 @@ jobs:
     needs: [ci-backend]
     steps:
       - uses: actions/checkout@v4          
+      - uses: docker/login-action@v3.3.0
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
