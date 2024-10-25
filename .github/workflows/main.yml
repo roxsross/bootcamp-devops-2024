@@ -4,6 +4,8 @@ on:
   workflow_dispatch:
   push:
     branches: [ wanderlust ]
+    paths:
+      - 'frontend/**'
 env:
   REGISTRY: roxsross12
   REPOSITORY: wanderlust
@@ -21,11 +23,12 @@ jobs:
           node-version: '21'
       - name: Install dependencies
         run: | 
-          cd frontend
+          #cd frontend
+          ls 
           npm install
       - name: run test
         run: | 
-          cd frontend
+          #cd frontend
           npm run test
         continue-on-error: true
         
