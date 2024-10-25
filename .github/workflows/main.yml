@@ -1,6 +1,6 @@
 name: CI
 on:
-#dsparar el pipeline de forma manual
+#drrrrsparar el pipeline de forma manual
   workflow_dispatch:
   push:
     branches: [ wanderlust ]
