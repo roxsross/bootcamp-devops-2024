@@ -1,24 +1,42 @@
+# .github/workflows/ci-cd.yaml
 name: CI/CD Pipeline
 on:
   workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Deploy to environment'
+        required: true
+        default: 'staging'
+        type: choice
+        options:
+          - staging
+          - production
   push:
-    branches: [ wanderlust ]
-    # paths:
-    #   - 'frontend/**'
-    #   - 'backend/**'
-    #   - 'kubernetes/**'
+    branches: [ wanderlust, main ]
+    paths:
+      - 'frontend/**'
+      - 'backend/**'
+      - 'kubernetes/**'
+      - '.github/workflows/**'
 
 env:
   REGISTRY: roxsross12
   REPOSITORY: wanderlust
-  TELEGRAM_CHAT_ID: "-1001508340482"
+  TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
   BOT_URL: "https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage"
+  NODE_VERSION: '21'
+  
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   version:
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.get_version.outputs.version }}
+      commit_sha: ${{ steps.get_version.outputs.commit_sha }}
+      build_date: ${{ steps.get_version.outputs.build_date }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -32,77 +50,134 @@ jobs:
           DAILY_BUILD=$(git rev-list --count HEAD --since="midnight")
           VERSION="${DATE}.${DAILY_BUILD}.${COMMIT_SHA}"
           echo "version=${VERSION}" >> $GITHUB_OUTPUT
+          echo "commit_sha=${COMMIT_SHA}" >> $GITHUB_OUTPUT
+          echo "build_date=$(date -u +'%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_OUTPUT
           echo "Versión generada: ${VERSION}"
+
+  security-scan:
+    runs-on: ubuntu-latest
+    needs: [version]
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          ignore-unfixed: true
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          severity: 'CRITICAL,HIGH'
+
+      - name: Upload Trivy scan results
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: 'trivy-results.sarif'
 
   notify-start:
     needs: [version]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Setup notification script
-        run: |
-          mkdir -p scripts
-          cp .github/scripts/notify.sh scripts/
-          chmod +x scripts/notify.sh
       - name: Send start notification
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           VERSION: ${{ needs.version.outputs.version }}
-          STATUS: "start"
-        run: ./scripts/notify.sh start
+          COMMIT_SHA: ${{ needs.version.outputs.commit_sha }}
+          BUILD_DATE: ${{ needs.version.outputs.build_date }}
+        run: |
+          chmod +x .github/scripts/notify.sh
+          .github/scripts/notify.sh "start" "$VERSION" "$COMMIT_SHA" "$BUILD_DATE"
 
   ci-frontend:
     runs-on: ubuntu-latest
     needs: [version, notify-start]
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4.1.0
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with: 
-          node-version: '21'
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
           cache-dependency-path: frontend/package-lock.json
-      - name: Install dependencies & run tests
+          
+      - name: Install dependencies
         working-directory: frontend
-        run: | 
-          npm ci
-          npm run test
-        continue-on-error: true
+        run: npm ci
+        
+      - name: Run linter
+        working-directory: frontend
+        run: npm run lint
+        
+      - name: Run tests with coverage
+        working-directory: frontend
+        run: npm run test:coverage
+        
+      - name: Upload coverage reports
+        uses: codecov/codecov-action@v3
+        with:
+          directory: ./frontend/coverage
+          flags: frontend
 
   ci-backend:
     runs-on: ubuntu-latest
     needs: [version, notify-start]
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4.1.0
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with: 
-          node-version: '21'
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
           cache-dependency-path: backend/package-lock.json
-      - name: Install dependencies & run tests
+          
+      - name: Install dependencies
         working-directory: backend
-        run: | 
-          npm ci
-          npm run test
+        run: npm ci
+        
+      - name: Run linter
+        working-directory: backend
+        run: npm run lint
+        
+      - name: Run tests with coverage
+        working-directory: backend
+        run: npm run test:coverage
+        
+      - name: Upload coverage reports
+        uses: codecov/codecov-action@v3
+        with:
+          directory: ./backend/coverage
+          flags: backend
 
   build-and-push:
-    needs: [version, ci-frontend, ci-backend]
+    needs: [version, ci-frontend, ci-backend, security-scan]
     runs-on: ubuntu-latest
     strategy:
       matrix:
         app: [frontend, backend]
     steps:
       - uses: actions/checkout@v4
+      
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+        
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3.7.1
+        uses: docker/setup-buildx-action@v3
+        
       - name: Login to Docker Hub
-        uses: docker/login-action@v3.3.0
+        uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+          
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
           context: ./${{ matrix.app }}
+          platforms: linux/amd64,linux/arm64
           push: true
           tags: |
             ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ matrix.app }}-${{ needs.version.outputs.version }}
@@ -111,30 +186,37 @@ jobs:
           cache-to: type=registry,ref=${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ matrix.app }}-buildcache,mode=max
           build-args: |
             VERSION=${{ needs.version.outputs.version }}
+            BUILD_DATE=${{ needs.version.outputs.build_date }}
+            COMMIT_SHA=${{ needs.version.outputs.commit_sha }}
 
   deploy:
     needs: [version, build-and-push]
     runs-on: arc-runner-set
+    environment: ${{ github.event.inputs.environment || 'staging' }}
     steps:
       - uses: actions/checkout@v4
+      
       - name: Install kubectl
-        uses: Azure/setup-kubectl@v4.0.0
-        with:
-          version: 'latest'
+        uses: Azure/setup-kubectl@v4
+        
       - name: Update kubernetes manifests
         run: |
-          sed -i "s|image: ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:frontend-.*|image: ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:frontend-${{ needs.version.outputs.version }}|" kubernetes/frontend.yaml
-          sed -i "s|image: ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:backend-.*|image: ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:backend-${{ needs.version.outputs.version }}|" kubernetes/backend.yaml
+          for app in frontend backend; do
+            sed -i "s|image: ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${app}-.*|image: ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${app}-${{ needs.version.outputs.version }}|" kubernetes/${app}.yaml
+          done
+          
       - name: Deploy to Kubernetes
         run: |
           kubectl apply -f kubernetes/mongodb.yaml
           kubectl apply -f kubernetes/redis.yaml
           kubectl apply -f kubernetes/backend.yaml
           kubectl apply -f kubernetes/frontend.yaml
+          
       - name: Verify deployment
+        timeout-minutes: 5
         run: |
-          kubectl rollout status deployment/frontend
-          kubectl rollout status deployment/backend
+          kubectl rollout status deployment/frontend -n ${{ github.event.inputs.environment || 'staging' }}
+          kubectl rollout status deployment/backend -n ${{ github.event.inputs.environment || 'staging' }}
 
   notify-result:
     needs: [version, deploy]
@@ -142,27 +224,28 @@ jobs:
     if: always()
     steps:
       - uses: actions/checkout@v4
-      - name: Setup notification script
-        run: |
-          mkdir -p scripts
-          cp .github/scripts/notify.sh scripts/
-          chmod +x scripts/notify.sh
       - name: Send result notification
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           VERSION: ${{ needs.version.outputs.version }}
+          COMMIT_SHA: ${{ needs.version.outputs.commit_sha }}
+          BUILD_DATE: ${{ needs.version.outputs.build_date }}
           STATUS: ${{ needs.deploy.result == 'success' && 'success' || 'failure' }}
-        run: ./scripts/notify.sh
+        run: |
+          chmod +x .github/scripts/notify.sh
+          .github/scripts/notify.sh "$STATUS" "$VERSION" "$COMMIT_SHA" "$BUILD_DATE"
 
   create-tag:
     needs: [version, deploy]
     runs-on: ubuntu-latest
-    if: success()
+    if: success() && github.event.inputs.environment == 'production'
     steps:
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Create Git tag
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
           git tag -a v${{ needs.version.outputs.version }} -m "Release v${{ needs.version.outputs.version }}"
           git push origin v${{ needs.version.outputs.version }}

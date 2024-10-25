@@ -1,121 +1,161 @@
 #!/bin/bash
-set -e
+set -euo pipefail
 
-# Debug - Mostrar variables (comentar en producción)
-echo "Checking environment variables..."
-echo "BOT_URL: ${BOT_URL:0:20}..." # Solo mostrar los primeros 20 caracteres por seguridad
-echo "TELEGRAM_CHAT_ID: $TELEGRAM_CHAT_ID"
-echo "GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
-echo "GITHUB_REF: $GITHUB_REF"
-echo "GITHUB_ACTOR: $GITHUB_ACTOR"
+# Constants
+readonly LOG_FILE="/tmp/notify-$(date +%Y%m%d-%H%M%S).log"
+readonly MAX_RETRIES=3
+readonly RETRY_DELAY=5
 
-# Verificar variables requeridas
-if [ -z "$BOT_URL" ]; then
-    echo "Error: BOT_URL no está definida"
-    exit 1
-fi
+# Logging function
+log() {
+    local level=$1
+    shift
+    echo "[$(date +'%Y-%m-%d %H:%M:%S')] [$level] $*" | tee -a "$LOG_FILE"
+}
 
-if [ -z "$TELEGRAM_CHAT_ID" ]; then
-    echo "Error: TELEGRAM_CHAT_ID no está definida"
-    exit 1
-fi
+# Validate environment variables
+check_required_vars() {
+    local required_vars=("BOT_URL" "TELEGRAM_CHAT_ID" "GITHUB_REPOSITORY" "GITHUB_REF" "GITHUB_ACTOR")
+    
+    for var in "${required_vars[@]}"; do
+        if [ -z "${!var:-}" ]; then
+            log "ERROR" "Required variable $var is not set"
+            exit 1
+        fi
+    done
+}
 
-# Función principal de notificación
+# Format duration
+format_duration() {
+    local start_time=$1
+    local end_time=$(date +%s)
+    local duration=$((end_time - start_time))
+    
+    local hours=$((duration / 3600))
+    local minutes=$(( (duration % 3600) / 60 ))
+    local seconds=$((duration % 60))
+    
+    echo "${hours}h ${minutes}m ${seconds}s"
+}
+
+# Send message to Telegram with retry mechanism
+send_telegram_message() {
+    local message=$1
+    local retry_count=0
+    local start_time=$(date +%s)
+    
+    while [ $retry_count -lt $MAX_RETRIES ]; do
+        if curl -s -X POST "${BOT_URL}" \
+            -d chat_id="${TELEGRAM_CHAT_ID}" \
+            -d text="${message}" \
+            -d parse_mode=Markdown; then
+            log "INFO" "Message sent successfully"
+            return 0
+        fi
+        
+        retry_count=$((retry_count + 1))
+        log "WARN" "Failed to send message, attempt ${retry_count}/${MAX_RETRIES}"
+        
+        if [ $retry_count -lt $MAX_RETRIES ]; then
+            sleep $RETRY_DELAY
+        fi
+    done
+    
+    log "ERROR" "Failed to send message after ${MAX_RETRIES} attempts"
+    return 1
+}
+
+# Main notification function
 send_telegram_notification() {
     local status=$1
-    local version=$2
-    local commit_sha=$3
-    local build_date=$4
+    local version=${2:-"Unknown"}
+    local commit_sha=${3:-"Unknown"}
+    local build_date=${4:-"Unknown"}
+    local start_time=$(date +%s)
+    
+    log "INFO" "Preparing notification for status: $status"
+    
+    # Build status emoji
+    local status_emoji
+    case $status in
+        "start") status_emoji="🚀" ;;
+        "success") status_emoji="✅" ;;
+        "failure") status_emoji="❌" ;;
+        *) 
+            log "ERROR" "Invalid status: $status"
+            exit 1
+        ;;
+    esac
+    
+    # Build common message header
+    local message="$status_emoji *${status^} Deployment Notification*
 
-    echo "Preparing notification for status: $status"
-    echo "Version: $version"
-    echo "Commit SHA: $commit_sha"
-    echo "Build Date: $build_date"
+📦 *Project:* \`${GITHUB_REPOSITORY}\`
+🔄 *Branch:* \`${GITHUB_REF#refs/heads/}\`
+🏷️ *Version:* \`${version}\`
+🔨 *Commit:* \`${commit_sha}\`
+👤 *Author:* \`${GITHUB_ACTOR}\`
+⏰ *Time:* \`$(date +"%Y-%m-%d %H:%M:%S UTC")\`"
 
-    if [ -z "$status" ] || [ -z "$version" ] || [ -z "$commit_sha" ]; then
-        echo "Error: Faltan argumentos requeridos"
-        echo "Uso: $0 <status> <version> <commit_sha> <build_date>"
-        exit 1
-    fi
-
+    # Add status-specific content
     case $status in
         "start")
-            MESSAGE="🚀 *Nuevo Despliegue Iniciado*
-            
-            📦 *Proyecto:* ${GITHUB_REPOSITORY}
-            🔄 *Branch:* ${GITHUB_REF#refs/heads/}
-            🏷️ *Version:* ${version}
-            🔨 *Commit:* \`${commit_sha}\`
-            ⏰ *Inicio:* $(date +"%Y-%m-%d %H:%M:%S")
-            👨‍💻 *Autor:* ${GITHUB_ACTOR}
-            
-            📝 *Etapas Completadas:*
-            ✅ Code Quality Check
-            ✅ Unit Tests
-            ✅ Security Audit
-            ✅ SonarCloud Analysis
-            
-            ⚡️ *Estado:* Deployment en progreso..."
+            message+="
+
+🔍 *Pending Steps:*
+▫️ Security Scan
+▫️ Unit Tests
+▫️ Build Images
+▫️ Deploy to K8s"
             ;;
-            
         "success")
-            MESSAGE="✅ *Despliegue Exitoso*
-            
-            📦 *Proyecto:* ${GITHUB_REPOSITORY}
-            🔄 *Branch:* ${GITHUB_REF#refs/heads/}
-            🏷️ *Version:* ${version}
-            🔨 *Commit:* \`${commit_sha}\`
-            ⏰ *Fin:* $(date +"%Y-%m-%d %H:%M:%S")
-            👨‍💻 *Autor:* ${GITHUB_ACTOR}
-            
-            📝 *Detalles:*
-            🐳 *Imagen:* \`${REGISTRY}/${REPOSITORY}:${version}\`
-            📅 *Build Date:* ${build_date}
-            
-            🎉 *Estado:* ¡Deployment completado con éxito!"
+            message+="
+
+✨ *Deployment Details:*
+▫️ *Duration:* \`$(format_duration "$start_time")\`
+▫️ *Build Date:* \`${build_date}\`
+▫️ *Environment:* \`${GITHUB_EVENT_NAME}\`
+
+🎉 Deployment completed successfully!"
             ;;
-            
         "failure")
-            MESSAGE="❌ *Despliegue Fallido*
-            
-            📦 *Proyecto:* ${GITHUB_REPOSITORY}
-            🔄 *Branch:* ${GITHUB_REF#refs/heads/}
-            🏷️ *Version:* ${version}
-            🔨 *Commit:* \`${commit_sha}\`
-            👨‍💻 *Autor:* ${GITHUB_ACTOR}
-            
-            ⚠️ *Posibles causas:*
-            - Fallos en las pruebas unitarias
-            - Problemas de seguridad detectados
-            - Error en el build de Docker
-            - Error en el despliegue a Kubernetes
-            
-            🚨 *Estado:* El deployment ha fallado
-            
-            Por favor, revisa los logs para más detalles."
-            ;;
-        *)
-            echo "Error: Estado no válido. Debe ser 'start', 'success' o 'failure'"
-            exit 1
+            message+="
+
+❌ *Deployment Failed*
+▫️ *Duration:* \`$(format_duration "$start_time")\`
+▫️ *Build Date:* \`${build_date}\`
+
+⚠️ Please check the GitHub Actions logs for details."
             ;;
     esac
 
-    echo "Sending notification to Telegram..."
-    
-    # Debug - Mostrar el comando curl (sin el mensaje completo)
-    echo "curl -s -X POST ${BOT_URL} -d chat_id=${TELEGRAM_CHAT_ID} [...mensaje omitido...] -d parse_mode=Markdown"
-
-    # Enviar la notificación
-    curl -s -X POST "${BOT_URL}" \
-        -d chat_id="${TELEGRAM_CHAT_ID}" \
-        -d text="${MESSAGE}" \
-        -d parse_mode=Markdown || {
-        echo "Error al enviar la notificación a Telegram"
+    # Send notification
+    if send_telegram_message "$message"; then
+        log "INFO" "Notification sent successfully for status: $status"
+    else
+        log "ERROR" "Failed to send notification"
         exit 1
-    }
-
-    echo "Notificación enviada correctamente"
+    fi
 }
 
-# Ejecutar la función con los argumentos recibidos
-send_telegram_notification "$@"
+# Main execution
+main() {
+    log "INFO" "Starting notification script"
+    
+    # Create log directory if it doesn't exist
+    mkdir -p "$(dirname "$LOG_FILE")"
+    
+    # Check required variables
+    check_required_vars
+    
+    # Execute notification
+    if ! send_telegram_notification "$@"; then
+        log "ERROR" "Notification failed"
+        exit 1
+    fi
+    
+    log "INFO" "Notification script completed successfully"
+}
+
+# Execute main function with all arguments
+main "$@"
