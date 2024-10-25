@@ -4,8 +4,9 @@ on:
   workflow_dispatch:
   push:
     branches: [ wanderlust ]
-    paths:
-      - 'frontend/**'
+    #solo si los cambios se ejcutan en la carpeta frontend
+    # paths:
+    #   - 'frontend/**'
 env:
   REGISTRY: roxsross12
   REPOSITORY: wanderlust
