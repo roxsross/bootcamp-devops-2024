@@ -1,0 +1,1322 @@
+{
+  "/Users/rossanasuarez/295/repos/wanderlust/backend/server.js": {
+    "path": "/Users/rossanasuarez/295/repos/wanderlust/backend/server.js",
+    "statementMap": {
+      "0": { "start": { "line": 10, "column": 12 }, "end": { "line": 10, "column": 21 } },
+      "1": { "start": { "line": 11, "column": 13 }, "end": { "line": 11, "column": 25 } },
+      "2": { "start": { "line": 13, "column": 0 }, "end": { "line": 13, "column": 24 } },
+      "3": { "start": { "line": 14, "column": 0 }, "end": { "line": 14, "column": 48 } },
+      "4": { "start": { "line": 15, "column": 0 }, "end": { "line": 15, "column": 16 } },
+      "5": { "start": { "line": 16, "column": 0 }, "end": { "line": 16, "column": 24 } },
+      "6": { "start": { "line": 17, "column": 0 }, "end": { "line": 17, "column": 23 } },
+      "7": { "start": { "line": 20, "column": 0 }, "end": { "line": 20, "column": 12 } },
+      "8": { "start": { "line": 23, "column": 0 }, "end": { "line": 23, "column": 17 } },
+      "9": { "start": { "line": 26, "column": 0 }, "end": { "line": 26, "column": 35 } },
+      "10": { "start": { "line": 27, "column": 0 }, "end": { "line": 27, "column": 33 } },
+      "11": { "start": { "line": 29, "column": 0 }, "end": { "line": 31, "column": 3 } },
+      "12": { "start": { "line": 30, "column": 2 }, "end": { "line": 30, "column": 64 } },
+      "13": { "start": { "line": 33, "column": 0 }, "end": { "line": 35, "column": 3 } },
+      "14": { "start": { "line": 34, "column": 2 }, "end": { "line": 34, "column": 51 } }
+    },
+    "fnMap": {
+      "0": {
+        "name": "(anonymous_0)",
+        "decl": { "start": { "line": 29, "column": 13 }, "end": { "line": 29, "column": 14 } },
+        "loc": { "start": { "line": 29, "column": 27 }, "end": { "line": 31, "column": 1 } },
+        "line": 29
+      },
+      "1": {
+        "name": "(anonymous_1)",
+        "decl": { "start": { "line": 33, "column": 17 }, "end": { "line": 33, "column": 18 } },
+        "loc": { "start": { "line": 33, "column": 23 }, "end": { "line": 35, "column": 1 } },
+        "line": 33
+      }
+    },
+    "branchMap": {
+      "0": {
+        "loc": { "start": { "line": 11, "column": 13 }, "end": { "line": 11, "column": 25 } },
+        "type": "binary-expr",
+        "locations": [
+          { "start": { "line": 11, "column": 13 }, "end": { "line": 11, "column": 17 } },
+          { "start": { "line": 11, "column": 21 }, "end": { "line": 11, "column": 25 } }
+        ],
+        "line": 11
+      }
+    },
+    "s": {
+      "0": 1,
+      "1": 1,
+      "2": 1,
+      "3": 1,
+      "4": 1,
+      "5": 1,
+      "6": 1,
+      "7": 1,
+      "8": 1,
+      "9": 1,
+      "10": 1,
+      "11": 1,
+      "12": 0,
+      "13": 1,
+      "14": 1
+    },
+    "f": { "0": 0, "1": 1 },
+    "b": { "0": [1, 1] },
+    "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    "hash": "9144b15b8d87259c8c1507c760d2859e87b3df13"
+  },
+  "/Users/rossanasuarez/295/repos/wanderlust/backend/config/db.js": {
+    "path": "/Users/rossanasuarez/295/repos/wanderlust/backend/config/db.js",
+    "statementMap": {
+      "0": { "start": { "line": 4, "column": 2 }, "end": { "line": 9, "column": 3 } },
+      "1": { "start": { "line": 5, "column": 4 }, "end": { "line": 5, "column": 34 } },
+      "2": { "start": { "line": 7, "column": 4 }, "end": { "line": 7, "column": 31 } },
+      "3": { "start": { "line": 8, "column": 4 }, "end": { "line": 8, "column": 20 } },
+      "4": { "start": { "line": 11, "column": 23 }, "end": { "line": 11, "column": 42 } },
+      "5": { "start": { "line": 13, "column": 2 }, "end": { "line": 15, "column": 5 } },
+      "6": { "start": { "line": 14, "column": 4 }, "end": { "line": 14, "column": 54 } },
+      "7": { "start": { "line": 17, "column": 2 }, "end": { "line": 19, "column": 5 } },
+      "8": { "start": { "line": 18, "column": 4 }, "end": { "line": 18, "column": 54 } },
+      "9": { "start": { "line": 20, "column": 2 }, "end": { "line": 20, "column": 9 } }
+    },
+    "fnMap": {
+      "0": {
+        "name": "connectDB",
+        "decl": { "start": { "line": 3, "column": 24 }, "end": { "line": 3, "column": 33 } },
+        "loc": { "start": { "line": 3, "column": 36 }, "end": { "line": 21, "column": 1 } },
+        "line": 3
+      },
+      "1": {
+        "name": "(anonymous_1)",
+        "decl": { "start": { "line": 13, "column": 28 }, "end": { "line": 13, "column": 29 } },
+        "loc": { "start": { "line": 13, "column": 34 }, "end": { "line": 15, "column": 3 } },
+        "line": 13
+      },
+      "2": {
+        "name": "(anonymous_2)",
+        "decl": { "start": { "line": 17, "column": 27 }, "end": { "line": 17, "column": 28 } },
+        "loc": { "start": { "line": 17, "column": 36 }, "end": { "line": 19, "column": 3 } },
+        "line": 17
+      }
+    },
+    "branchMap": {},
+    "s": { "0": 1, "1": 1, "2": 0, "3": 0, "4": 1, "5": 1, "6": 0, "7": 1, "8": 1, "9": 1 },
+    "f": { "0": 1, "1": 0, "2": 1 },
+    "b": {},
+    "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    "hash": "0b453e965893888e764b5676487178b6be4503da"
+  },
+  "/Users/rossanasuarez/295/repos/wanderlust/backend/config/utils.js": {
+    "path": "/Users/rossanasuarez/295/repos/wanderlust/backend/config/utils.js",
+    "statementMap": {
+      "0": { "start": { "line": 2, "column": 0 }, "end": { "line": 2, "column": 16 } },
+      "1": { "start": { "line": 4, "column": 13 }, "end": { "line": 4, "column": 29 } },
+      "2": { "start": { "line": 5, "column": 20 }, "end": { "line": 5, "column": 43 } },
+      "3": { "start": { "line": 6, "column": 18 }, "end": { "line": 6, "column": 39 } }
+    },
+    "fnMap": {},
+    "branchMap": {},
+    "s": { "0": 2, "1": 2, "2": 2, "3": 2 },
+    "f": {},
+    "b": {},
+    "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    "hash": "a2ddee7d6b89b522e7bd637e919a83f5c68df046"
+  },
+  "/Users/rossanasuarez/295/repos/wanderlust/backend/controllers/auth-controller.js": {
+    "path": "/Users/rossanasuarez/295/repos/wanderlust/backend/controllers/auth-controller.js",
+    "statementMap": {
+      "0": { "start": { "line": 7, "column": 30 }, "end": { "line": 7, "column": 36 } },
+      "1": { "start": { "line": 8, "column": 17 }, "end": { "line": 8, "column": 20 } },
+      "2": { "start": { "line": 12, "column": 31 }, "end": { "line": 48, "column": 1 } },
+      "3": { "start": { "line": 13, "column": 2 }, "end": { "line": 47, "column": 3 } },
+      "4": { "start": { "line": 14, "column": 38 }, "end": { "line": 14, "column": 46 } },
+      "5": { "start": { "line": 15, "column": 4 }, "end": { "line": 17, "column": 5 } },
+      "6": { "start": { "line": 16, "column": 6 }, "end": { "line": 16, "column": 50 } },
+      "7": { "start": { "line": 18, "column": 26 }, "end": { "line": 18, "column": 55 } },
+      "8": { "start": { "line": 19, "column": 4 }, "end": { "line": 21, "column": 5 } },
+      "9": { "start": { "line": 20, "column": 6 }, "end": { "line": 20, "column": 46 } },
+      "10": { "start": { "line": 22, "column": 27 }, "end": { "line": 22, "column": 51 } },
+      "11": { "start": { "line": 23, "column": 20 }, "end": { "line": 23, "column": 80 } },
+      "12": { "start": { "line": 24, "column": 24 }, "end": { "line": 26, "column": 6 } },
+      "13": { "start": { "line": 27, "column": 25 }, "end": { "line": 29, "column": 6 } },
+      "14": { "start": { "line": 30, "column": 4 }, "end": { "line": 30, "column": 65 } },
+      "15": { "start": { "line": 31, "column": 4 }, "end": { "line": 31, "column": 68 } },
+      "16": { "start": { "line": 32, "column": 4 }, "end": { "line": 41, "column": 7 } },
+      "17": { "start": { "line": 43, "column": 4 }, "end": { "line": 46, "column": 7 } },
+      "18": { "start": { "line": 51, "column": 31 }, "end": { "line": 99, "column": 1 } },
+      "19": { "start": { "line": 52, "column": 2 }, "end": { "line": 98, "column": 3 } },
+      "20": { "start": { "line": 53, "column": 32 }, "end": { "line": 53, "column": 40 } },
+      "21": { "start": { "line": 54, "column": 4 }, "end": { "line": 56, "column": 5 } },
+      "22": { "start": { "line": 55, "column": 6 }, "end": { "line": 55, "column": 62 } },
+      "23": { "start": { "line": 57, "column": 25 }, "end": { "line": 57, "column": 54 } },
+      "24": { "start": { "line": 58, "column": 4 }, "end": { "line": 60, "column": 5 } },
+      "25": { "start": { "line": 59, "column": 6 }, "end": { "line": 59, "column": 46 } },
+      "26": { "start": { "line": 63, "column": 4 }, "end": { "line": 82, "column": 5 } },
+      "27": { "start": { "line": 64, "column": 6 }, "end": { "line": 70, "column": 8 } },
+      "28": { "start": { "line": 71, "column": 6 }, "end": { "line": 77, "column": 8 } },
+      "29": { "start": { "line": 78, "column": 6 }, "end": { "line": 78, "column": 67 } },
+      "30": { "start": { "line": 79, "column": 6 }, "end": { "line": 79, "column": 70 } },
+      "31": { "start": { "line": 81, "column": 6 }, "end": { "line": 81, "column": 42 } },
+      "32": { "start": { "line": 83, "column": 4 }, "end": { "line": 92, "column": 7 } },
+      "33": { "start": { "line": 94, "column": 4 }, "end": { "line": 97, "column": 7 } },
+      "34": { "start": { "line": 103, "column": 36 }, "end": { "line": 114, "column": 1 } },
+      "35": { "start": { "line": 104, "column": 24 }, "end": { "line": 104, "column": 71 } },
+      "36": { "start": { "line": 105, "column": 17 }, "end": { "line": 111, "column": 4 } },
+      "37": { "start": { "line": 113, "column": 2 }, "end": { "line": 113, "column": 50 } },
+      "38": { "start": { "line": 117, "column": 32 }, "end": { "line": 177, "column": 1 } },
+      "39": { "start": { "line": 118, "column": 15 }, "end": { "line": 118, "column": 29 } },
+      "40": { "start": { "line": 119, "column": 2 }, "end": { "line": 124, "column": 3 } },
+      "41": { "start": { "line": 120, "column": 4 }, "end": { "line": 123, "column": 7 } },
+      "42": { "start": { "line": 125, "column": 19 }, "end": { "line": 125, "column": 46 } },
+      "43": { "start": { "line": 126, "column": 2 }, "end": { "line": 176, "column": 3 } },
+      "44": { "start": { "line": 127, "column": 26 }, "end": { "line": 139, "column": 5 } },
+      "45": { "start": { "line": 140, "column": 21 }, "end": { "line": 142, "column": 6 } },
+      "46": { "start": { "line": 143, "column": 28 }, "end": { "line": 143, "column": 41 } },
+      "47": { "start": { "line": 144, "column": 32 }, "end": { "line": 144, "column": 61 } },
+      "48": { "start": { "line": 145, "column": 4 }, "end": { "line": 147, "column": 5 } },
+      "49": { "start": { "line": 146, "column": 6 }, "end": { "line": 146, "column": 68 } },
+      "50": { "start": { "line": 148, "column": 20 }, "end": { "line": 151, "column": 6 } },
+      "51": { "start": { "line": 152, "column": 20 }, "end": { "line": 152, "column": 46 } },
+      "52": { "start": { "line": 153, "column": 24 }, "end": { "line": 155, "column": 6 } },
+      "53": { "start": { "line": 156, "column": 25 }, "end": { "line": 158, "column": 6 } },
+      "54": { "start": { "line": 159, "column": 4 }, "end": { "line": 159, "column": 65 } },
+      "55": { "start": { "line": 160, "column": 4 }, "end": { "line": 160, "column": 68 } },
+      "56": { "start": { "line": 161, "column": 4 }, "end": { "line": 170, "column": 7 } },
+      "57": { "start": { "line": 172, "column": 4 }, "end": { "line": 175, "column": 7 } },
+      "58": { "start": { "line": 180, "column": 32 }, "end": { "line": 237, "column": 1 } },
+      "59": { "start": { "line": 181, "column": 15 }, "end": { "line": 181, "column": 29 } },
+      "60": { "start": { "line": 182, "column": 2 }, "end": { "line": 187, "column": 3 } },
+      "61": { "start": { "line": 183, "column": 4 }, "end": { "line": 186, "column": 7 } },
+      "62": { "start": { "line": 188, "column": 19 }, "end": { "line": 188, "column": 46 } },
+      "63": { "start": { "line": 189, "column": 2 }, "end": { "line": 236, "column": 3 } },
+      "64": { "start": { "line": 190, "column": 26 }, "end": { "line": 202, "column": 5 } },
+      "65": { "start": { "line": 203, "column": 21 }, "end": { "line": 205, "column": 6 } },
+      "66": { "start": { "line": 206, "column": 28 }, "end": { "line": 206, "column": 41 } },
+      "67": { "start": { "line": 207, "column": 25 }, "end": { "line": 207, "column": 54 } },
+      "68": { "start": { "line": 208, "column": 4 }, "end": { "line": 210, "column": 5 } },
+      "69": { "start": { "line": 209, "column": 6 }, "end": { "line": 209, "column": 63 } },
+      "70": { "start": { "line": 211, "column": 20 }, "end": { "line": 211, "column": 51 } },
+      "71": { "start": { "line": 212, "column": 24 }, "end": { "line": 214, "column": 6 } },
+      "72": { "start": { "line": 215, "column": 25 }, "end": { "line": 217, "column": 6 } },
+      "73": { "start": { "line": 218, "column": 4 }, "end": { "line": 218, "column": 65 } },
+      "74": { "start": { "line": 219, "column": 4 }, "end": { "line": 219, "column": 68 } },
+      "75": { "start": { "line": 221, "column": 4 }, "end": { "line": 230, "column": 7 } },
+      "76": { "start": { "line": 232, "column": 4 }, "end": { "line": 235, "column": 7 } },
+      "77": { "start": { "line": 241, "column": 36 }, "end": { "line": 252, "column": 1 } },
+      "78": { "start": { "line": 242, "column": 24 }, "end": { "line": 242, "column": 67 } },
+      "79": { "start": { "line": 243, "column": 17 }, "end": { "line": 249, "column": 4 } },
+      "80": { "start": { "line": 251, "column": 2 }, "end": { "line": 251, "column": 50 } },
+      "81": { "start": { "line": 255, "column": 32 }, "end": { "line": 317, "column": 1 } },
+      "82": { "start": { "line": 256, "column": 15 }, "end": { "line": 256, "column": 29 } },
+      "83": { "start": { "line": 257, "column": 2 }, "end": { "line": 262, "column": 3 } },
+      "84": { "start": { "line": 258, "column": 4 }, "end": { "line": 261, "column": 7 } },
+      "85": { "start": { "line": 263, "column": 19 }, "end": { "line": 263, "column": 47 } },
+      "86": { "start": { "line": 264, "column": 2 }, "end": { "line": 316, "column": 3 } },
+      "87": { "start": { "line": 265, "column": 26 }, "end": { "line": 275, "column": 5 } },
+      "88": { "start": { "line": 276, "column": 21 }, "end": { "line": 278, "column": 6 } },
+      "89": { "start": { "line": 279, "column": 4 }, "end": { "line": 281, "column": 5 } },
+      "90": { "start": { "line": 280, "column": 6 }, "end": { "line": 280, "column": 82 } },
+      "91": { "start": { "line": 282, "column": 28 }, "end": { "line": 282, "column": 41 } },
+      "92": { "start": { "line": 283, "column": 32 }, "end": { "line": 283, "column": 61 } },
+      "93": { "start": { "line": 284, "column": 4 }, "end": { "line": 286, "column": 5 } },
+      "94": { "start": { "line": 285, "column": 6 }, "end": { "line": 285, "column": 68 } },
+      "95": { "start": { "line": 287, "column": 20 }, "end": { "line": 290, "column": 6 } },
+      "96": { "start": { "line": 291, "column": 20 }, "end": { "line": 291, "column": 46 } },
+      "97": { "start": { "line": 292, "column": 24 }, "end": { "line": 294, "column": 6 } },
+      "98": { "start": { "line": 295, "column": 25 }, "end": { "line": 297, "column": 6 } },
+      "99": { "start": { "line": 298, "column": 4 }, "end": { "line": 298, "column": 65 } },
+      "100": { "start": { "line": 299, "column": 4 }, "end": { "line": 299, "column": 68 } },
+      "101": { "start": { "line": 301, "column": 4 }, "end": { "line": 310, "column": 7 } },
+      "102": { "start": { "line": 312, "column": 4 }, "end": { "line": 315, "column": 7 } },
+      "103": { "start": { "line": 320, "column": 32 }, "end": { "line": 375, "column": 1 } },
+      "104": { "start": { "line": 321, "column": 15 }, "end": { "line": 321, "column": 29 } },
+      "105": { "start": { "line": 322, "column": 2 }, "end": { "line": 327, "column": 3 } },
+      "106": { "start": { "line": 323, "column": 4 }, "end": { "line": 326, "column": 7 } },
+      "107": { "start": { "line": 328, "column": 19 }, "end": { "line": 328, "column": 47 } },
+      "108": { "start": { "line": 329, "column": 2 }, "end": { "line": 374, "column": 3 } },
+      "109": { "start": { "line": 330, "column": 26 }, "end": { "line": 340, "column": 5 } },
+      "110": { "start": { "line": 341, "column": 21 }, "end": { "line": 343, "column": 6 } },
+      "111": { "start": { "line": 344, "column": 28 }, "end": { "line": 344, "column": 41 } },
+      "112": { "start": { "line": 345, "column": 25 }, "end": { "line": 345, "column": 54 } },
+      "113": { "start": { "line": 346, "column": 4 }, "end": { "line": 348, "column": 5 } },
+      "114": { "start": { "line": 347, "column": 6 }, "end": { "line": 347, "column": 63 } },
+      "115": { "start": { "line": 349, "column": 20 }, "end": { "line": 349, "column": 51 } },
+      "116": { "start": { "line": 350, "column": 24 }, "end": { "line": 352, "column": 6 } },
+      "117": { "start": { "line": 353, "column": 25 }, "end": { "line": 355, "column": 6 } },
+      "118": { "start": { "line": 356, "column": 4 }, "end": { "line": 356, "column": 65 } },
+      "119": { "start": { "line": 357, "column": 4 }, "end": { "line": 357, "column": 68 } },
+      "120": { "start": { "line": 359, "column": 4 }, "end": { "line": 368, "column": 7 } },
+      "121": { "start": { "line": 370, "column": 4 }, "end": { "line": 373, "column": 7 } },
+      "122": { "start": { "line": 378, "column": 27 }, "end": { "line": 390, "column": 1 } },
+      "123": { "start": { "line": 379, "column": 2 }, "end": { "line": 389, "column": 3 } },
+      "124": { "start": { "line": 380, "column": 4 }, "end": { "line": 380, "column": 50 } },
+      "125": { "start": { "line": 381, "column": 4 }, "end": { "line": 381, "column": 51 } },
+      "126": { "start": { "line": 383, "column": 4 }, "end": { "line": 383, "column": 89 } },
+      "127": { "start": { "line": 385, "column": 4 }, "end": { "line": 388, "column": 7 } }
+    },
+    "fnMap": {
+      "0": {
+        "name": "(anonymous_0)",
+        "decl": { "start": { "line": 12, "column": 31 }, "end": { "line": 12, "column": 32 } },
+        "loc": { "start": { "line": 12, "column": 57 }, "end": { "line": 48, "column": 1 } },
+        "line": 12
+      },
+      "1": {
+        "name": "(anonymous_1)",
+        "decl": { "start": { "line": 51, "column": 31 }, "end": { "line": 51, "column": 32 } },
+        "loc": { "start": { "line": 51, "column": 57 }, "end": { "line": 99, "column": 1 } },
+        "line": 51
+      },
+      "2": {
+        "name": "(anonymous_2)",
+        "decl": { "start": { "line": 103, "column": 36 }, "end": { "line": 103, "column": 37 } },
+        "loc": { "start": { "line": 103, "column": 56 }, "end": { "line": 114, "column": 1 } },
+        "line": 103
+      },
+      "3": {
+        "name": "(anonymous_3)",
+        "decl": { "start": { "line": 117, "column": 32 }, "end": { "line": 117, "column": 33 } },
+        "loc": { "start": { "line": 117, "column": 58 }, "end": { "line": 177, "column": 1 } },
+        "line": 117
+      },
+      "4": {
+        "name": "(anonymous_4)",
+        "decl": { "start": { "line": 180, "column": 32 }, "end": { "line": 180, "column": 33 } },
+        "loc": { "start": { "line": 180, "column": 58 }, "end": { "line": 237, "column": 1 } },
+        "line": 180
+      },
+      "5": {
+        "name": "(anonymous_5)",
+        "decl": { "start": { "line": 241, "column": 36 }, "end": { "line": 241, "column": 37 } },
+        "loc": { "start": { "line": 241, "column": 56 }, "end": { "line": 252, "column": 1 } },
+        "line": 241
+      },
+      "6": {
+        "name": "(anonymous_6)",
+        "decl": { "start": { "line": 255, "column": 32 }, "end": { "line": 255, "column": 33 } },
+        "loc": { "start": { "line": 255, "column": 58 }, "end": { "line": 317, "column": 1 } },
+        "line": 255
+      },
+      "7": {
+        "name": "(anonymous_7)",
+        "decl": { "start": { "line": 320, "column": 32 }, "end": { "line": 320, "column": 33 } },
+        "loc": { "start": { "line": 320, "column": 58 }, "end": { "line": 375, "column": 1 } },
+        "line": 320
+      },
+      "8": {
+        "name": "(anonymous_8)",
+        "decl": { "start": { "line": 378, "column": 27 }, "end": { "line": 378, "column": 28 } },
+        "loc": { "start": { "line": 378, "column": 53 }, "end": { "line": 390, "column": 1 } },
+        "line": 378
+      }
+    },
+    "branchMap": {
+      "0": {
+        "loc": { "start": { "line": 15, "column": 4 }, "end": { "line": 17, "column": 5 } },
+        "type": "if",
+        "locations": [
+          { "start": { "line": 15, "column": 4 }, "end": { "line": 17, "column": 5 } },
+          { "start": {}, "end": {} }
+        ],
+        "line": 15
+      },
+      "1": {
+        "loc": { "start": { "line": 15, "column": 8 }, "end": { "line": 15, "column": 36 } },
+        "type": "binary-expr",
+        "locations": [
+          { "start": { "line": 15, "column": 8 }, "end": { "line": 15, "column": 13 } },
+          { "start": { "line": 15, "column": 17 }, "end": { "line": 15, "column": 23 } },
+          { "start": { "line": 15, "column": 27 }, "end": { "line": 15, "column": 36 } }
+        ],
+        "line": 15
+      },
+      "2": {
+        "loc": { "start": { "line": 19, "column": 4 }, "end": { "line": 21, "column": 5 } },
+        "type": "if",
+        "locations": [
+          { "start": { "line": 19, "column": 4 }, "end": { "line": 21, "column": 5 } },
+          { "start": {}, "end": {} }
+        ],
+        "line": 19
+      },
+      "3": {
+        "loc": { "start": { "line": 54, "column": 4 }, "end": { "line": 56, "column": 5 } },
+        "type": "if",
+        "locations": [
+          { "start": { "line": 54, "column": 4 }, "end": { "line": 56, "column": 5 } },
+          { "start": {}, "end": {} }
+        ],
+        "line": 54
+      },
+      "4": {
+        "loc": { "start": { "line": 54, "column": 8 }, "end": { "line": 54, "column": 27 } },
+        "type": "binary-expr",
+        "locations": [
+          { "start": { "line": 54, "column": 8 }, "end": { "line": 54, "column": 14 } },
+          { "start": { "line": 54, "column": 18 }, "end": { "line": 54, "column": 27 } }
+        ],
+        "line": 54
+      },
+      "5": {
+        "loc": { "start": { "line": 58, "column": 4 }, "end": { "line": 60, "column": 5 } },
+        "type": "if",
+        "locations": [
+          { "start": { "line": 58, "column": 4 }, "end": { "line": 60, "column": 5 } },
+          { "start": {}, "end": {} }
+        ],
+        "line": 58
+      },
+      "6": {
+        "loc": { "start": { "line": 63, "column": 4 }, "end": { "line": 82, "column": 5 } },
+        "type": "if",
+        "locations": [
+          { "start": { "line": 63, "column": 4 }, "end": { "line": 82, "column": 5 } },
+          { "start": { "line": 80, "column": 11 }, "end": { "line": 82, "column": 5 } }
+        ],
+        "line": 63
+      },
+      "7": {
+        "loc": { "start": { "line": 63, "column": 8 }, "end": { "line": 63, "column": 68 } },
+        "type": "binary-expr",
+        "locations": [
+          { "start": { "line": 63, "column": 8 }, "end": { "line": 63, "column": 20 } },
+          { "start": { "line": 63, "column": 24 }, "end": { "line": 63, "column": 68 } }
+        ],
+        "line": 63
+      },
+      "8": {
+        "loc": { "start": { "line": 119, "column": 2 }, "end": { "line": 124, "column": 3 } },
+        "type": "if",
+        "locations": [
+          { "start": { "line": 119, "column": 2 }, "end": { "line": 124, "column": 3 } },
+          { "start": {}, "end": {} }
+        ],
+        "line": 119
+      },
+      "9": {
+        "loc": { "start": { "line": 145, "column": 4 }, "end": { "line": 147, "column": 5 } },
+        "type": "if",
+        "locations": [
+          { "start": { "line": 145, "column": 4 }, "end": { "line": 147, "column": 5 } },
+          { "start": {}, "end": {} }
+        ],
+        "line": 145
+      },
+      "10": {
+        "loc": { "start": { "line": 182, "column": 2 }, "end": { "line": 187, "column": 3 } },
+        "type": "if",
+        "locations": [
+          { "start": { "line": 182, "column": 2 }, "end": { "line": 187, "column": 3 } },
+          { "start": {}, "end": {} }
+        ],
+        "line": 182
+      },
+      "11": {
+        "loc": { "start": { "line": 208, "column": 4 }, "end": { "line": 210, "column": 5 } },
+        "type": "if",
+        "locations": [
+          { "start": { "line": 208, "column": 4 }, "end": { "line": 210, "column": 5 } },
+          { "start": {}, "end": {} }
+        ],
+        "line": 208
+      },
+      "12": {
+        "loc": { "start": { "line": 257, "column": 2 }, "end": { "line": 262, "column": 3 } },
+        "type": "if",
+        "locations": [
+          { "start": { "line": 257, "column": 2 }, "end": { "line": 262, "column": 3 } },
+          { "start": {}, "end": {} }
+        ],
+        "line": 257
+      },
+      "13": {
+        "loc": { "start": { "line": 279, "column": 4 }, "end": { "line": 281, "column": 5 } },
+        "type": "if",
+        "locations": [
+          { "start": { "line": 279, "column": 4 }, "end": { "line": 281, "column": 5 } },
+          { "start": {}, "end": {} }
+        ],
+        "line": 279
+      },
+      "14": {
+        "loc": { "start": { "line": 284, "column": 4 }, "end": { "line": 286, "column": 5 } },
+        "type": "if",
+        "locations": [
+          { "start": { "line": 284, "column": 4 }, "end": { "line": 286, "column": 5 } },
+          { "start": {}, "end": {} }
+        ],
+        "line": 284
+      },
+      "15": {
+        "loc": { "start": { "line": 322, "column": 2 }, "end": { "line": 327, "column": 3 } },
+        "type": "if",
+        "locations": [
+          { "start": { "line": 322, "column": 2 }, "end": { "line": 327, "column": 3 } },
+          { "start": {}, "end": {} }
+        ],
+        "line": 322
+      },
+      "16": {
+        "loc": { "start": { "line": 346, "column": 4 }, "end": { "line": 348, "column": 5 } },
+        "type": "if",
+        "locations": [
+          { "start": { "line": 346, "column": 4 }, "end": { "line": 348, "column": 5 } },
+          { "start": {}, "end": {} }
+        ],
+        "line": 346
+      }
+    },
+    "s": {
+      "0": 1,
+      "1": 1,
+      "2": 1,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0,
+      "8": 0,
+      "9": 0,
+      "10": 0,
+      "11": 0,
+      "12": 0,
+      "13": 0,
+      "14": 0,
+      "15": 0,
+      "16": 0,
+      "17": 0,
+      "18": 1,
+      "19": 0,
+      "20": 0,
+      "21": 0,
+      "22": 0,
+      "23": 0,
+      "24": 0,
+      "25": 0,
+      "26": 0,
+      "27": 0,
+      "28": 0,
+      "29": 0,
+      "30": 0,
+      "31": 0,
+      "32": 0,
+      "33": 0,
+      "34": 1,
+      "35": 0,
+      "36": 0,
+      "37": 0,
+      "38": 1,
+      "39": 0,
+      "40": 0,
+      "41": 0,
+      "42": 0,
+      "43": 0,
+      "44": 0,
+      "45": 0,
+      "46": 0,
+      "47": 0,
+      "48": 0,
+      "49": 0,
+      "50": 0,
+      "51": 0,
+      "52": 0,
+      "53": 0,
+      "54": 0,
+      "55": 0,
+      "56": 0,
+      "57": 0,
+      "58": 1,
+      "59": 0,
+      "60": 0,
+      "61": 0,
+      "62": 0,
+      "63": 0,
+      "64": 0,
+      "65": 0,
+      "66": 0,
+      "67": 0,
+      "68": 0,
+      "69": 0,
+      "70": 0,
+      "71": 0,
+      "72": 0,
+      "73": 0,
+      "74": 0,
+      "75": 0,
+      "76": 0,
+      "77": 1,
+      "78": 0,
+      "79": 0,
+      "80": 0,
+      "81": 1,
+      "82": 0,
+      "83": 0,
+      "84": 0,
+      "85": 0,
+      "86": 0,
+      "87": 0,
+      "88": 0,
+      "89": 0,
+      "90": 0,
+      "91": 0,
+      "92": 0,
+      "93": 0,
+      "94": 0,
+      "95": 0,
+      "96": 0,
+      "97": 0,
+      "98": 0,
+      "99": 0,
+      "100": 0,
+      "101": 0,
+      "102": 0,
+      "103": 1,
+      "104": 0,
+      "105": 0,
+      "106": 0,
+      "107": 0,
+      "108": 0,
+      "109": 0,
+      "110": 0,
+      "111": 0,
+      "112": 0,
+      "113": 0,
+      "114": 0,
+      "115": 0,
+      "116": 0,
+      "117": 0,
+      "118": 0,
+      "119": 0,
+      "120": 0,
+      "121": 0,
+      "122": 1,
+      "123": 0,
+      "124": 0,
+      "125": 0,
+      "126": 0,
+      "127": 0
+    },
+    "f": { "0": 0, "1": 0, "2": 0, "3": 0, "4": 0, "5": 0, "6": 0, "7": 0, "8": 0 },
+    "b": {
+      "0": [0, 0],
+      "1": [0, 0, 0],
+      "2": [0, 0],
+      "3": [0, 0],
+      "4": [0, 0],
+      "5": [0, 0],
+      "6": [0, 0],
+      "7": [0, 0],
+      "8": [0, 0],
+      "9": [0, 0],
+      "10": [0, 0],
+      "11": [0, 0],
+      "12": [0, 0],
+      "13": [0, 0],
+      "14": [0, 0],
+      "15": [0, 0],
+      "16": [0, 0]
+    },
+    "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    "hash": "9485daaed2d85dc9e9d12ac5b55268381eaf7a77"
+  },
+  "/Users/rossanasuarez/295/repos/wanderlust/backend/controllers/posts-controller.js": {
+    "path": "/Users/rossanasuarez/295/repos/wanderlust/backend/controllers/posts-controller.js",
+    "statementMap": {
+      "0": { "start": { "line": 8, "column": 33 }, "end": { "line": 61, "column": 1 } },
+      "1": { "start": { "line": 9, "column": 2 }, "end": { "line": 60, "column": 3 } },
+      "2": { "start": { "line": 17, "column": 8 }, "end": { "line": 17, "column": 16 } },
+      "3": { "start": { "line": 20, "column": 4 }, "end": { "line": 24, "column": 5 } },
+      "4": { "start": { "line": 21, "column": 6 }, "end": { "line": 23, "column": 69 } },
+      "5": { "start": { "line": 27, "column": 27 }, "end": { "line": 27, "column": 52 } },
+      "6": { "start": { "line": 28, "column": 4 }, "end": { "line": 32, "column": 5 } },
+      "7": { "start": { "line": 29, "column": 6 }, "end": { "line": 31, "column": 70 } },
+      "8": { "start": { "line": 35, "column": 4 }, "end": { "line": 39, "column": 5 } },
+      "9": { "start": { "line": 36, "column": 6 }, "end": { "line": 38, "column": 67 } },
+      "10": { "start": { "line": 41, "column": 17 }, "end": { "line": 48, "column": 6 } },
+      "11": { "start": { "line": 50, "column": 24 }, "end": { "line": 55, "column": 6 } },
+      "12": { "start": { "line": 57, "column": 4 }, "end": { "line": 57, "column": 47 } },
+      "13": { "start": { "line": 59, "column": 4 }, "end": { "line": 59, "column": 81 } },
+      "14": { "start": { "line": 63, "column": 34 }, "end": { "line": 71, "column": 1 } },
+      "15": { "start": { "line": 64, "column": 2 }, "end": { "line": 70, "column": 3 } },
+      "16": { "start": { "line": 65, "column": 18 }, "end": { "line": 65, "column": 35 } },
+      "17": { "start": { "line": 66, "column": 4 }, "end": { "line": 66, "column": 56 } },
+      "18": { "start": { "line": 67, "column": 4 }, "end": { "line": 67, "column": 50 } },
+      "19": { "start": { "line": 69, "column": 4 }, "end": { "line": 69, "column": 81 } },
+      "20": { "start": { "line": 73, "column": 39 }, "end": { "line": 81, "column": 1 } },
+      "21": { "start": { "line": 74, "column": 2 }, "end": { "line": 80, "column": 3 } },
+      "22": { "start": { "line": 75, "column": 26 }, "end": { "line": 75, "column": 67 } },
+      "23": { "start": { "line": 76, "column": 4 }, "end": { "line": 76, "column": 69 } },
+      "24": { "start": { "line": 77, "column": 4 }, "end": { "line": 77, "column": 51 } },
+      "25": { "start": { "line": 79, "column": 4 }, "end": { "line": 79, "column": 81 } },
+      "26": { "start": { "line": 83, "column": 40 }, "end": { "line": 98, "column": 1 } },
+      "27": { "start": { "line": 84, "column": 19 }, "end": { "line": 84, "column": 38 } },
+      "28": { "start": { "line": 85, "column": 2 }, "end": { "line": 97, "column": 3 } },
+      "29": { "start": { "line": 87, "column": 4 }, "end": { "line": 91, "column": 5 } },
+      "30": { "start": { "line": 88, "column": 6 }, "end": { "line": 90, "column": 69 } },
+      "31": { "start": { "line": 93, "column": 26 }, "end": { "line": 93, "column": 67 } },
+      "32": { "start": { "line": 94, "column": 4 }, "end": { "line": 94, "column": 51 } },
+      "33": { "start": { "line": 96, "column": 4 }, "end": { "line": 96, "column": 81 } },
+      "34": { "start": { "line": 100, "column": 37 }, "end": { "line": 108, "column": 1 } },
+      "35": { "start": { "line": 101, "column": 2 }, "end": { "line": 107, "column": 3 } },
+      "36": { "start": { "line": 102, "column": 24 }, "end": { "line": 102, "column": 66 } },
+      "37": { "start": { "line": 103, "column": 4 }, "end": { "line": 103, "column": 65 } },
+      "38": { "start": { "line": 104, "column": 4 }, "end": { "line": 104, "column": 49 } },
+      "39": { "start": { "line": 106, "column": 4 }, "end": { "line": 106, "column": 81 } },
+      "40": { "start": { "line": 110, "column": 34 }, "end": { "line": 123, "column": 1 } },
+      "41": { "start": { "line": 111, "column": 2 }, "end": { "line": 122, "column": 3 } },
+      "42": { "start": { "line": 112, "column": 17 }, "end": { "line": 112, "column": 51 } },
+      "43": { "start": { "line": 115, "column": 4 }, "end": { "line": 117, "column": 5 } },
+      "44": { "start": { "line": 116, "column": 6 }, "end": { "line": 116, "column": 100 } },
+      "45": { "start": { "line": 119, "column": 4 }, "end": { "line": 119, "column": 42 } },
+      "46": { "start": { "line": 121, "column": 4 }, "end": { "line": 121, "column": 81 } },
+      "47": { "start": { "line": 125, "column": 33 }, "end": { "line": 140, "column": 1 } },
+      "48": { "start": { "line": 126, "column": 2 }, "end": { "line": 139, "column": 3 } },
+      "49": { "start": { "line": 127, "column": 24 }, "end": { "line": 129, "column": 6 } },
+      "50": { "start": { "line": 132, "column": 4 }, "end": { "line": 134, "column": 5 } },
+      "51": { "start": { "line": 133, "column": 6 }, "end": { "line": 133, "column": 100 } },
+      "52": { "start": { "line": 136, "column": 4 }, "end": { "line": 136, "column": 49 } },
+      "53": { "start": { "line": 138, "column": 4 }, "end": { "line": 138, "column": 81 } },
+      "54": { "start": { "line": 142, "column": 37 }, "end": { "line": 155, "column": 1 } },
+      "55": { "start": { "line": 143, "column": 2 }, "end": { "line": 154, "column": 3 } },
+      "56": { "start": { "line": 144, "column": 17 }, "end": { "line": 144, "column": 60 } },
+      "57": { "start": { "line": 147, "column": 4 }, "end": { "line": 149, "column": 5 } },
+      "58": { "start": { "line": 148, "column": 6 }, "end": { "line": 148, "column": 100 } },
+      "59": { "start": { "line": 151, "column": 4 }, "end": { "line": 151, "column": 82 } },
+      "60": { "start": { "line": 153, "column": 4 }, "end": { "line": 153, "column": 81 } }
+    },
+    "fnMap": {
+      "0": {
+        "name": "(anonymous_0)",
+        "decl": { "start": { "line": 8, "column": 33 }, "end": { "line": 8, "column": 34 } },
+        "loc": { "start": { "line": 8, "column": 53 }, "end": { "line": 61, "column": 1 } },
+        "line": 8
+      },
+      "1": {
+        "name": "(anonymous_1)",
+        "decl": { "start": { "line": 63, "column": 34 }, "end": { "line": 63, "column": 35 } },
+        "loc": { "start": { "line": 63, "column": 54 }, "end": { "line": 71, "column": 1 } },
+        "line": 63
+      },
+      "2": {
+        "name": "(anonymous_2)",
+        "decl": { "start": { "line": 73, "column": 39 }, "end": { "line": 73, "column": 40 } },
+        "loc": { "start": { "line": 73, "column": 59 }, "end": { "line": 81, "column": 1 } },
+        "line": 73
+      },
+      "3": {
+        "name": "(anonymous_3)",
+        "decl": { "start": { "line": 83, "column": 40 }, "end": { "line": 83, "column": 41 } },
+        "loc": { "start": { "line": 83, "column": 60 }, "end": { "line": 98, "column": 1 } },
+        "line": 83
+      },
+      "4": {
+        "name": "(anonymous_4)",
+        "decl": { "start": { "line": 100, "column": 37 }, "end": { "line": 100, "column": 38 } },
+        "loc": { "start": { "line": 100, "column": 57 }, "end": { "line": 108, "column": 1 } },
+        "line": 100
+      },
+      "5": {
+        "name": "(anonymous_5)",
+        "decl": { "start": { "line": 110, "column": 34 }, "end": { "line": 110, "column": 35 } },
+        "loc": { "start": { "line": 110, "column": 54 }, "end": { "line": 123, "column": 1 } },
+        "line": 110
+      },
+      "6": {
+        "name": "(anonymous_6)",
+        "decl": { "start": { "line": 125, "column": 33 }, "end": { "line": 125, "column": 34 } },
+        "loc": { "start": { "line": 125, "column": 53 }, "end": { "line": 140, "column": 1 } },
+        "line": 125
+      },
+      "7": {
+        "name": "(anonymous_7)",
+        "decl": { "start": { "line": 142, "column": 37 }, "end": { "line": 142, "column": 38 } },
+        "loc": { "start": { "line": 142, "column": 57 }, "end": { "line": 155, "column": 1 } },
+        "line": 142
+      }
+    },
+    "branchMap": {
+      "0": {
+        "loc": { "start": { "line": 16, "column": 6 }, "end": { "line": 16, "column": 28 } },
+        "type": "default-arg",
+        "locations": [
+          { "start": { "line": 16, "column": 23 }, "end": { "line": 16, "column": 28 } }
+        ],
+        "line": 16
+      },
+      "1": {
+        "loc": { "start": { "line": 20, "column": 4 }, "end": { "line": 24, "column": 5 } },
+        "type": "if",
+        "locations": [
+          { "start": { "line": 20, "column": 4 }, "end": { "line": 24, "column": 5 } },
+          { "start": {}, "end": {} }
+        ],
+        "line": 20
+      },
+      "2": {
+        "loc": { "start": { "line": 20, "column": 8 }, "end": { "line": 20, "column": 74 } },
+        "type": "binary-expr",
+        "locations": [
+          { "start": { "line": 20, "column": 8 }, "end": { "line": 20, "column": 14 } },
+          { "start": { "line": 20, "column": 18 }, "end": { "line": 20, "column": 29 } },
+          { "start": { "line": 20, "column": 33 }, "end": { "line": 20, "column": 43 } },
+          { "start": { "line": 20, "column": 47 }, "end": { "line": 20, "column": 59 } },
+          { "start": { "line": 20, "column": 63 }, "end": { "line": 20, "column": 74 } }
+        ],
+        "line": 20
+      },
+      "3": {
+        "loc": { "start": { "line": 28, "column": 4 }, "end": { "line": 32, "column": 5 } },
+        "type": "if",
+        "locations": [
+          { "start": { "line": 28, "column": 4 }, "end": { "line": 32, "column": 5 } },
+          { "start": {}, "end": {} }
+        ],
+        "line": 28
+      },
+      "4": {
+        "loc": { "start": { "line": 35, "column": 4 }, "end": { "line": 39, "column": 5 } },
+        "type": "if",
+        "locations": [
+          { "start": { "line": 35, "column": 4 }, "end": { "line": 39, "column": 5 } },
+          { "start": {}, "end": {} }
+        ],
+        "line": 35
+      },
+      "5": {
+        "loc": { "start": { "line": 87, "column": 4 }, "end": { "line": 91, "column": 5 } },
+        "type": "if",
+        "locations": [
+          { "start": { "line": 87, "column": 4 }, "end": { "line": 91, "column": 5 } },
+          { "start": {}, "end": {} }
+        ],
+        "line": 87
+      },
+      "6": {
+        "loc": { "start": { "line": 115, "column": 4 }, "end": { "line": 117, "column": 5 } },
+        "type": "if",
+        "locations": [
+          { "start": { "line": 115, "column": 4 }, "end": { "line": 117, "column": 5 } },
+          { "start": {}, "end": {} }
+        ],
+        "line": 115
+      },
+      "7": {
+        "loc": { "start": { "line": 132, "column": 4 }, "end": { "line": 134, "column": 5 } },
+        "type": "if",
+        "locations": [
+          { "start": { "line": 132, "column": 4 }, "end": { "line": 134, "column": 5 } },
+          { "start": {}, "end": {} }
+        ],
+        "line": 132
+      },
+      "8": {
+        "loc": { "start": { "line": 147, "column": 4 }, "end": { "line": 149, "column": 5 } },
+        "type": "if",
+        "locations": [
+          { "start": { "line": 147, "column": 4 }, "end": { "line": 149, "column": 5 } },
+          { "start": {}, "end": {} }
+        ],
+        "line": 147
+      }
+    },
+    "s": {
+      "0": 2,
+      "1": 10,
+      "2": 10,
+      "3": 10,
+      "4": 2,
+      "5": 8,
+      "6": 8,
+      "7": 2,
+      "8": 6,
+      "9": 2,
+      "10": 4,
+      "11": 4,
+      "12": 1,
+      "13": 3,
+      "14": 2,
+      "15": 3,
+      "16": 3,
+      "17": 1,
+      "18": 1,
+      "19": 2,
+      "20": 2,
+      "21": 3,
+      "22": 3,
+      "23": 1,
+      "24": 1,
+      "25": 2,
+      "26": 2,
+      "27": 5,
+      "28": 5,
+      "29": 5,
+      "30": 2,
+      "31": 3,
+      "32": 1,
+      "33": 2,
+      "34": 2,
+      "35": 3,
+      "36": 3,
+      "37": 1,
+      "38": 1,
+      "39": 2,
+      "40": 2,
+      "41": 3,
+      "42": 3,
+      "43": 2,
+      "44": 1,
+      "45": 1,
+      "46": 1,
+      "47": 2,
+      "48": 5,
+      "49": 5,
+      "50": 2,
+      "51": 1,
+      "52": 1,
+      "53": 3,
+      "54": 2,
+      "55": 5,
+      "56": 5,
+      "57": 2,
+      "58": 1,
+      "59": 1,
+      "60": 2
+    },
+    "f": { "0": 10, "1": 3, "2": 3, "3": 5, "4": 3, "5": 3, "6": 5, "7": 5 },
+    "b": {
+      "0": [0],
+      "1": [2, 8],
+      "2": [10, 8, 8, 8, 8],
+      "3": [2, 6],
+      "4": [2, 4],
+      "5": [2, 3],
+      "6": [1, 1],
+      "7": [1, 1],
+      "8": [1, 1]
+    },
+    "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    "hash": "bc886b610d4d1e23a8193ab7fa9938dd928c5ac8"
+  },
+  "/Users/rossanasuarez/295/repos/wanderlust/backend/models/post.js": {
+    "path": "/Users/rossanasuarez/295/repos/wanderlust/backend/models/post.js",
+    "statementMap": {
+      "0": { "start": { "line": 3, "column": 19 }, "end": { "line": 11, "column": 2 } }
+    },
+    "fnMap": {},
+    "branchMap": {},
+    "s": { "0": 1 },
+    "f": {},
+    "b": {},
+    "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    "hash": "13d218c926273c21f94467dc46868342ca9b3f68"
+  },
+  "/Users/rossanasuarez/295/repos/wanderlust/backend/models/user.js": {
+    "path": "/Users/rossanasuarez/295/repos/wanderlust/backend/models/user.js",
+    "statementMap": {
+      "0": { "start": { "line": 3, "column": 19 }, "end": { "line": 25, "column": 2 } }
+    },
+    "fnMap": {},
+    "branchMap": {},
+    "s": { "0": 1 },
+    "f": {},
+    "b": {},
+    "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    "hash": "c393f25ae0d7931e980cea21c8da107db1dfe4bb"
+  },
+  "/Users/rossanasuarez/295/repos/wanderlust/backend/routes/auth.js": {
+    "path": "/Users/rossanasuarez/295/repos/wanderlust/backend/routes/auth.js",
+    "statementMap": {
+      "0": { "start": { "line": 2, "column": 15 }, "end": { "line": 2, "column": 23 } },
+      "1": { "start": { "line": 16, "column": 0 }, "end": { "line": 16, "column": 44 } },
+      "2": { "start": { "line": 17, "column": 0 }, "end": { "line": 17, "column": 56 } },
+      "3": { "start": { "line": 18, "column": 0 }, "end": { "line": 18, "column": 56 } },
+      "4": { "start": { "line": 21, "column": 0 }, "end": { "line": 21, "column": 44 } },
+      "5": { "start": { "line": 22, "column": 0 }, "end": { "line": 22, "column": 56 } },
+      "6": { "start": { "line": 23, "column": 0 }, "end": { "line": 23, "column": 56 } },
+      "7": { "start": { "line": 26, "column": 0 }, "end": { "line": 26, "column": 55 } },
+      "8": { "start": { "line": 27, "column": 0 }, "end": { "line": 27, "column": 55 } },
+      "9": { "start": { "line": 30, "column": 0 }, "end": { "line": 30, "column": 37 } }
+    },
+    "fnMap": {},
+    "branchMap": {},
+    "s": { "0": 1, "1": 1, "2": 1, "3": 1, "4": 1, "5": 1, "6": 1, "7": 1, "8": 1, "9": 1 },
+    "f": {},
+    "b": {},
+    "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    "hash": "b2e7788198f17fc233c087de6887085f6877283e"
+  },
+  "/Users/rossanasuarez/295/repos/wanderlust/backend/routes/posts.js": {
+    "path": "/Users/rossanasuarez/295/repos/wanderlust/backend/routes/posts.js",
+    "statementMap": {
+      "0": { "start": { "line": 14, "column": 15 }, "end": { "line": 14, "column": 23 } },
+      "1": { "start": { "line": 17, "column": 0 }, "end": { "line": 17, "column": 36 } },
+      "2": { "start": { "line": 20, "column": 0 }, "end": { "line": 20, "column": 72 } },
+      "3": { "start": { "line": 23, "column": 0 }, "end": { "line": 23, "column": 90 } },
+      "4": { "start": { "line": 26, "column": 0 }, "end": { "line": 26, "column": 62 } },
+      "5": { "start": { "line": 29, "column": 0 }, "end": { "line": 29, "column": 84 } },
+      "6": { "start": { "line": 31, "column": 0 }, "end": { "line": 31, "column": 39 } },
+      "7": { "start": { "line": 34, "column": 0 }, "end": { "line": 34, "column": 40 } },
+      "8": { "start": { "line": 37, "column": 0 }, "end": { "line": 37, "column": 45 } }
+    },
+    "fnMap": {},
+    "branchMap": {},
+    "s": { "0": 1, "1": 1, "2": 1, "3": 1, "4": 1, "5": 1, "6": 1, "7": 1, "8": 1 },
+    "f": {},
+    "b": {},
+    "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    "hash": "f920597ec722fcd104da65dcf6aa6a31e16a0b8e"
+  },
+  "/Users/rossanasuarez/295/repos/wanderlust/backend/services/redis.js": {
+    "path": "/Users/rossanasuarez/295/repos/wanderlust/backend/services/redis.js",
+    "statementMap": {
+      "0": { "start": { "line": 4, "column": 12 }, "end": { "line": 4, "column": 16 } },
+      "1": { "start": { "line": 7, "column": 2 }, "end": { "line": 19, "column": 3 } },
+      "2": { "start": { "line": 8, "column": 4 }, "end": { "line": 16, "column": 5 } },
+      "3": { "start": { "line": 9, "column": 6 }, "end": { "line": 12, "column": 19 } },
+      "4": { "start": { "line": 13, "column": 6 }, "end": { "line": 13, "column": 51 } },
+      "5": { "start": { "line": 15, "column": 6 }, "end": { "line": 15, "column": 59 } },
+      "6": { "start": { "line": 18, "column": 4 }, "end": { "line": 18, "column": 63 } },
+      "7": { "start": { "line": 23, "column": 2 }, "end": { "line": 23, "column": 15 } }
+    },
+    "fnMap": {
+      "0": {
+        "name": "connectToRedis",
+        "decl": { "start": { "line": 6, "column": 22 }, "end": { "line": 6, "column": 36 } },
+        "loc": { "start": { "line": 6, "column": 39 }, "end": { "line": 20, "column": 1 } },
+        "line": 6
+      },
+      "1": {
+        "name": "getRedisClient",
+        "decl": { "start": { "line": 22, "column": 16 }, "end": { "line": 22, "column": 30 } },
+        "loc": { "start": { "line": 22, "column": 33 }, "end": { "line": 24, "column": 1 } },
+        "line": 22
+      }
+    },
+    "branchMap": {
+      "0": {
+        "loc": { "start": { "line": 8, "column": 4 }, "end": { "line": 16, "column": 5 } },
+        "type": "if",
+        "locations": [
+          { "start": { "line": 8, "column": 4 }, "end": { "line": 16, "column": 5 } },
+          { "start": { "line": 14, "column": 11 }, "end": { "line": 16, "column": 5 } }
+        ],
+        "line": 8
+      }
+    },
+    "s": { "0": 2, "1": 1, "2": 1, "3": 0, "4": 0, "5": 1, "6": 0, "7": 18 },
+    "f": { "0": 1, "1": 18 },
+    "b": { "0": [0, 1] },
+    "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    "hash": "bd4dc564f3822721a511e48e96e5b2e15d73ce15"
+  },
+  "/Users/rossanasuarez/295/repos/wanderlust/backend/tests/utils/helper-objects.js": {
+    "path": "/Users/rossanasuarez/295/repos/wanderlust/backend/tests/utils/helper-objects.js",
+    "statementMap": {
+      "0": { "start": { "line": 3, "column": 19 }, "end": { "line": 6, "column": 1 } },
+      "1": { "start": { "line": 8, "column": 32 }, "end": { "line": 18, "column": 1 } },
+      "2": { "start": { "line": 9, "column": 2 }, "end": { "line": 17, "column": 4 } },
+      "3": { "start": { "line": 20, "column": 35 }, "end": { "line": 25, "column": 1 } },
+      "4": { "start": { "line": 21, "column": 2 }, "end": { "line": 24, "column": 4 } }
+    },
+    "fnMap": {
+      "0": {
+        "name": "(anonymous_0)",
+        "decl": { "start": { "line": 8, "column": 32 }, "end": { "line": 8, "column": 33 } },
+        "loc": { "start": { "line": 8, "column": 50 }, "end": { "line": 18, "column": 1 } },
+        "line": 8
+      },
+      "1": {
+        "name": "(anonymous_1)",
+        "decl": { "start": { "line": 20, "column": 35 }, "end": { "line": 20, "column": 36 } },
+        "loc": { "start": { "line": 20, "column": 53 }, "end": { "line": 25, "column": 1 } },
+        "line": 20
+      }
+    },
+    "branchMap": {
+      "0": {
+        "loc": { "start": { "line": 8, "column": 33 }, "end": { "line": 8, "column": 45 } },
+        "type": "default-arg",
+        "locations": [{ "start": { "line": 8, "column": 43 }, "end": { "line": 8, "column": 45 } }],
+        "line": 8
+      },
+      "1": {
+        "loc": { "start": { "line": 10, "column": 11 }, "end": { "line": 10, "column": 39 } },
+        "type": "binary-expr",
+        "locations": [
+          { "start": { "line": 10, "column": 11 }, "end": { "line": 10, "column": 24 } },
+          { "start": { "line": 10, "column": 28 }, "end": { "line": 10, "column": 39 } }
+        ],
+        "line": 10
+      },
+      "2": {
+        "loc": { "start": { "line": 11, "column": 16 }, "end": { "line": 11, "column": 51 } },
+        "type": "binary-expr",
+        "locations": [
+          { "start": { "line": 11, "column": 16 }, "end": { "line": 11, "column": 34 } },
+          { "start": { "line": 11, "column": 38 }, "end": { "line": 11, "column": 51 } }
+        ],
+        "line": 11
+      },
+      "3": {
+        "loc": { "start": { "line": 12, "column": 15 }, "end": { "line": 12, "column": 84 } },
+        "type": "binary-expr",
+        "locations": [
+          { "start": { "line": 12, "column": 15 }, "end": { "line": 12, "column": 32 } },
+          { "start": { "line": 12, "column": 36 }, "end": { "line": 12, "column": 84 } }
+        ],
+        "line": 12
+      },
+      "4": {
+        "loc": { "start": { "line": 13, "column": 16 }, "end": { "line": 13, "column": 58 } },
+        "type": "binary-expr",
+        "locations": [
+          { "start": { "line": 13, "column": 16 }, "end": { "line": 13, "column": 34 } },
+          { "start": { "line": 13, "column": 38 }, "end": { "line": 13, "column": 58 } }
+        ],
+        "line": 13
+      },
+      "5": {
+        "loc": { "start": { "line": 14, "column": 17 }, "end": { "line": 14, "column": 62 } },
+        "type": "binary-expr",
+        "locations": [
+          { "start": { "line": 14, "column": 17 }, "end": { "line": 14, "column": 36 } },
+          { "start": { "line": 14, "column": 40 }, "end": { "line": 14, "column": 62 } }
+        ],
+        "line": 14
+      },
+      "6": {
+        "loc": { "start": { "line": 15, "column": 20 }, "end": { "line": 15, "column": 51 } },
+        "type": "binary-expr",
+        "locations": [
+          { "start": { "line": 15, "column": 20 }, "end": { "line": 15, "column": 42 } },
+          { "start": { "line": 15, "column": 46 }, "end": { "line": 15, "column": 51 } }
+        ],
+        "line": 15
+      },
+      "7": {
+        "loc": { "start": { "line": 20, "column": 36 }, "end": { "line": 20, "column": 48 } },
+        "type": "default-arg",
+        "locations": [
+          { "start": { "line": 20, "column": 46 }, "end": { "line": 20, "column": 48 } }
+        ],
+        "line": 20
+      },
+      "8": {
+        "loc": { "start": { "line": 22, "column": 10 }, "end": { "line": 22, "column": 28 } },
+        "type": "binary-expr",
+        "locations": [
+          { "start": { "line": 22, "column": 10 }, "end": { "line": 22, "column": 22 } },
+          { "start": { "line": 22, "column": 26 }, "end": { "line": 22, "column": 28 } }
+        ],
+        "line": 22
+      },
+      "9": {
+        "loc": { "start": { "line": 23, "column": 12 }, "end": { "line": 23, "column": 32 } },
+        "type": "binary-expr",
+        "locations": [
+          { "start": { "line": 23, "column": 12 }, "end": { "line": 23, "column": 26 } },
+          { "start": { "line": 23, "column": 30 }, "end": { "line": 23, "column": 32 } }
+        ],
+        "line": 23
+      }
+    },
+    "s": { "0": 2, "1": 2, "2": 27, "3": 2, "4": 23 },
+    "f": { "0": 27, "1": 23 },
+    "b": {
+      "0": [6],
+      "1": [27, 12],
+      "2": [27, 27],
+      "3": [27, 25],
+      "4": [27, 22],
+      "5": [27, 27],
+      "6": [27, 23],
+      "7": [6],
+      "8": [23, 15],
+      "9": [23, 11]
+    },
+    "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    "hash": "9817a50c99e17f36443ed05546f6025a48859ae7"
+  },
+  "/Users/rossanasuarez/295/repos/wanderlust/backend/utils/cache-posts.js": {
+    "path": "/Users/rossanasuarez/295/repos/wanderlust/backend/utils/cache-posts.js",
+    "statementMap": {
+      "0": { "start": { "line": 6, "column": 2 }, "end": { "line": 6, "column": 35 } },
+      "1": { "start": { "line": 10, "column": 2 }, "end": { "line": 10, "column": 37 } },
+      "2": { "start": { "line": 10, "column": 25 }, "end": { "line": 10, "column": 37 } },
+      "3": { "start": { "line": 12, "column": 19 }, "end": { "line": 12, "column": 43 } },
+      "4": { "start": { "line": 13, "column": 21 }, "end": { "line": 13, "column": 57 } },
+      "5": { "start": { "line": 14, "column": 2 }, "end": { "line": 16, "column": 3 } },
+      "6": { "start": { "line": 15, "column": 4 }, "end": { "line": 15, "column": 34 } },
+      "7": { "start": { "line": 17, "column": 2 }, "end": { "line": 17, "column": 14 } },
+      "8": { "start": { "line": 21, "column": 2 }, "end": { "line": 21, "column": 32 } },
+      "9": { "start": { "line": 21, "column": 25 }, "end": { "line": 21, "column": 32 } },
+      "10": { "start": { "line": 23, "column": 19 }, "end": { "line": 23, "column": 43 } },
+      "11": { "start": { "line": 24, "column": 2 }, "end": { "line": 24, "column": 61 } },
+      "12": { "start": { "line": 28, "column": 2 }, "end": { "line": 28, "column": 32 } },
+      "13": { "start": { "line": 28, "column": 25 }, "end": { "line": 28, "column": 32 } },
+      "14": { "start": { "line": 30, "column": 19 }, "end": { "line": 30, "column": 43 } },
+      "15": { "start": { "line": 31, "column": 2 }, "end": { "line": 31, "column": 39 } }
+    },
+    "fnMap": {
+      "0": {
+        "name": "isRedisEnabled",
+        "decl": { "start": { "line": 5, "column": 9 }, "end": { "line": 5, "column": 23 } },
+        "loc": { "start": { "line": 5, "column": 26 }, "end": { "line": 7, "column": 1 } },
+        "line": 5
+      },
+      "1": {
+        "name": "retrieveDataFromCache",
+        "decl": { "start": { "line": 9, "column": 22 }, "end": { "line": 9, "column": 43 } },
+        "loc": { "start": { "line": 9, "column": 49 }, "end": { "line": 18, "column": 1 } },
+        "line": 9
+      },
+      "2": {
+        "name": "storeDataInCache",
+        "decl": { "start": { "line": 20, "column": 22 }, "end": { "line": 20, "column": 38 } },
+        "loc": { "start": { "line": 20, "column": 50 }, "end": { "line": 25, "column": 1 } },
+        "line": 20
+      },
+      "3": {
+        "name": "deleteDataFromCache",
+        "decl": { "start": { "line": 27, "column": 22 }, "end": { "line": 27, "column": 41 } },
+        "loc": { "start": { "line": 27, "column": 47 }, "end": { "line": 32, "column": 1 } },
+        "line": 27
+      }
+    },
+    "branchMap": {
+      "0": {
+        "loc": { "start": { "line": 10, "column": 2 }, "end": { "line": 10, "column": 37 } },
+        "type": "if",
+        "locations": [
+          { "start": { "line": 10, "column": 2 }, "end": { "line": 10, "column": 37 } },
+          { "start": {}, "end": {} }
+        ],
+        "line": 10
+      },
+      "1": {
+        "loc": { "start": { "line": 14, "column": 2 }, "end": { "line": 16, "column": 3 } },
+        "type": "if",
+        "locations": [
+          { "start": { "line": 14, "column": 2 }, "end": { "line": 16, "column": 3 } },
+          { "start": {}, "end": {} }
+        ],
+        "line": 14
+      },
+      "2": {
+        "loc": { "start": { "line": 21, "column": 2 }, "end": { "line": 21, "column": 32 } },
+        "type": "if",
+        "locations": [
+          { "start": { "line": 21, "column": 2 }, "end": { "line": 21, "column": 32 } },
+          { "start": {}, "end": {} }
+        ],
+        "line": 21
+      },
+      "3": {
+        "loc": { "start": { "line": 28, "column": 2 }, "end": { "line": 28, "column": 32 } },
+        "type": "if",
+        "locations": [
+          { "start": { "line": 28, "column": 2 }, "end": { "line": 28, "column": 32 } },
+          { "start": {}, "end": {} }
+        ],
+        "line": 28
+      }
+    },
+    "s": {
+      "0": 18,
+      "1": 3,
+      "2": 3,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0,
+      "8": 3,
+      "9": 3,
+      "10": 0,
+      "11": 0,
+      "12": 12,
+      "13": 12,
+      "14": 0,
+      "15": 0
+    },
+    "f": { "0": 18, "1": 3, "2": 3, "3": 12 },
+    "b": { "0": [3, 0], "1": [0, 0], "2": [3, 0], "3": [12, 0] },
+    "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    "hash": "2688382388b50333eb64f5ecab5281ce1d31ee9a"
+  },
+  "/Users/rossanasuarez/295/repos/wanderlust/backend/utils/constants.js": {
+    "path": "/Users/rossanasuarez/295/repos/wanderlust/backend/utils/constants.js",
+    "statementMap": {
+      "0": { "start": { "line": 1, "column": 31 }, "end": { "line": 9, "column": 1 } },
+      "1": { "start": { "line": 10, "column": 27 }, "end": { "line": 17, "column": 1 } },
+      "2": { "start": { "line": 18, "column": 33 }, "end": { "line": 40, "column": 1 } },
+      "3": { "start": { "line": 42, "column": 26 }, "end": { "line": 46, "column": 1 } },
+      "4": { "start": { "line": 48, "column": 28 }, "end": { "line": 48, "column": 40 } }
+    },
+    "fnMap": {},
+    "branchMap": {},
+    "s": { "0": 2, "1": 2, "2": 2, "3": 2, "4": 2 },
+    "f": {},
+    "b": {},
+    "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    "hash": "d227fa702e01772330ea406861364ff93014d2ee"
+  },
+  "/Users/rossanasuarez/295/repos/wanderlust/backend/utils/cookie_options.js": {
+    "path": "/Users/rossanasuarez/295/repos/wanderlust/backend/utils/cookie_options.js",
+    "statementMap": {
+      "0": { "start": { "line": 1, "column": 35 }, "end": { "line": 6, "column": 1 } },
+      "1": { "start": { "line": 7, "column": 36 }, "end": { "line": 12, "column": 1 } }
+    },
+    "fnMap": {},
+    "branchMap": {},
+    "s": { "0": 1, "1": 1 },
+    "f": {},
+    "b": {},
+    "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    "hash": "eb0de042273633242981f8d772872f5528e8c7ed"
+  },
+  "/Users/rossanasuarez/295/repos/wanderlust/backend/utils/middleware.js": {
+    "path": "/Users/rossanasuarez/295/repos/wanderlust/backend/utils/middleware.js",
+    "statementMap": {
+      "0": { "start": { "line": 4, "column": 28 }, "end": { "line": 15, "column": 1 } },
+      "1": { "start": { "line": 4, "column": 37 }, "end": { "line": 15, "column": 1 } },
+      "2": { "start": { "line": 5, "column": 2 }, "end": { "line": 14, "column": 3 } },
+      "3": { "start": { "line": 6, "column": 23 }, "end": { "line": 6, "column": 55 } },
+      "4": { "start": { "line": 7, "column": 4 }, "end": { "line": 10, "column": 5 } },
+      "5": { "start": { "line": 8, "column": 6 }, "end": { "line": 8, "column": 57 } },
+      "6": { "start": { "line": 9, "column": 6 }, "end": { "line": 9, "column": 57 } },
+      "7": { "start": { "line": 11, "column": 4 }, "end": { "line": 11, "column": 11 } },
+      "8": { "start": { "line": 13, "column": 4 }, "end": { "line": 13, "column": 81 } }
+    },
+    "fnMap": {
+      "0": {
+        "name": "(anonymous_0)",
+        "decl": { "start": { "line": 4, "column": 28 }, "end": { "line": 4, "column": 29 } },
+        "loc": { "start": { "line": 4, "column": 37 }, "end": { "line": 15, "column": 1 } },
+        "line": 4
+      },
+      "1": {
+        "name": "(anonymous_1)",
+        "decl": { "start": { "line": 4, "column": 37 }, "end": { "line": 4, "column": 38 } },
+        "loc": { "start": { "line": 4, "column": 63 }, "end": { "line": 15, "column": 1 } },
+        "line": 4
+      }
+    },
+    "branchMap": {
+      "0": {
+        "loc": { "start": { "line": 7, "column": 4 }, "end": { "line": 10, "column": 5 } },
+        "type": "if",
+        "locations": [
+          { "start": { "line": 7, "column": 4 }, "end": { "line": 10, "column": 5 } },
+          { "start": {}, "end": {} }
+        ],
+        "line": 7
+      }
+    },
+    "s": { "0": 1, "1": 3, "2": 3, "3": 3, "4": 3, "5": 0, "6": 0, "7": 3, "8": 0 },
+    "f": { "0": 3, "1": 3 },
+    "b": { "0": [0, 3] },
+    "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    "hash": "9ab5546eca19a6bbffd91ea0e5538854e4910f9c"
+  }
+}
