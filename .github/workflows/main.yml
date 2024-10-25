@@ -31,7 +31,7 @@ jobs:
         continue-on-error: true
         
   cd-frontend:
-    runs-on: ubuntu-latest
+    runs-on: arc-runner-set
     needs: [ci-frontend, cd-backend]
     steps:
       - uses: actions/checkout@v4
@@ -72,7 +72,13 @@ jobs:
         run: |
           docker build -t $REGISTRY/$REPOSITORY:frontend-$VERSION .
           docker push $REGISTRY/$REPOSITORY:frontend-$VERSION
-
+#### deploy kubernetes
+      - name: Kubectl tool installer
+        uses: Azure/setup-kubectl@v4.0.0
+        with:
+          version: 'latest'
+      - name: lista nodos
+        run: kubectl get nodes -A
 ####notify
       - name: Send Success Notification
         if: success()
@@ -111,7 +117,7 @@ jobs:
           npm run test
           
   cd-backend:
-    runs-on: ubuntu-latest
+    runs-on: arc-runner-set
     needs: [ci-backend]
     steps:
       - uses: actions/checkout@v4          
@@ -126,7 +132,13 @@ jobs:
           cd backend
           docker build -t $REGISTRY/$REPOSITORY:backend-$VERSION .
           docker push $REGISTRY/$REPOSITORY:backend-$VERSION
-
+#### deploy kubernetes
+      - name: Kubectl tool installer
+        uses: Azure/setup-kubectl@v4.0.0
+        with:
+          version: 'latest'
+      - name: lista nodos
+        run: kubectl get nodes -A          
   notify:
     runs-on: ubuntu-latest
     needs: [cd-backend, cd-frontend]
