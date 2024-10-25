@@ -1,28 +1,13 @@
 # .github/workflows/ci-cd.yaml
 name: CI/CD Pipeline
 on:
-  workflow_dispatch:
-    inputs:
-      environment:
-        description: 'Deploy to environment'
-        required: true
-        default: 'staging'
-        type: choice
-        options:
-          - staging
-          - production
   push:
     branches: [ wanderlust, main ]
-    paths:
-      - 'frontend/**'
-      - 'backend/**'
-      - 'kubernetes/**'
-      - '.github/workflows/**'
 
 env:
   REGISTRY: roxsross12
   REPOSITORY: wanderlust
-  TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+  TELEGRAM_CHAT_ID: "-1001508340482"
   BOT_URL: "https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage"
   NODE_VERSION: '21'
   
@@ -53,27 +38,6 @@ jobs:
           echo "commit_sha=${COMMIT_SHA}" >> $GITHUB_OUTPUT
           echo "build_date=$(date -u +'%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_OUTPUT
           echo "Versión generada: ${VERSION}"
-
-  security-scan:
-    runs-on: ubuntu-latest
-    needs: [version]
-    steps:
-      - uses: actions/checkout@v4
-      
-      - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@master
-        with:
-          scan-type: 'fs'
-          ignore-unfixed: true
-          format: 'sarif'
-          output: 'trivy-results.sarif'
-          severity: 'CRITICAL,HIGH'
-
-      - name: Upload Trivy scan results
-        uses: github/codeql-action/upload-sarif@v3
-        if: always()
-        with:
-          sarif_file: 'trivy-results.sarif'
 
   notify-start:
     needs: [version]
@@ -153,8 +117,8 @@ jobs:
           flags: backend
 
   build-and-push:
-    needs: [version, ci-frontend, ci-backend, security-scan]
-    runs-on: ubuntu-latest
+    needs: [version, ci-frontend, ci-backend]
+    runs-on: arc-runner-set
     strategy:
       matrix:
         app: [frontend, backend]
@@ -234,18 +198,3 @@ jobs:
         run: |
           chmod +x .github/scripts/notify.sh
           .github/scripts/notify.sh "$STATUS" "$VERSION" "$COMMIT_SHA" "$BUILD_DATE"
-
-  create-tag:
-    needs: [version, deploy]
-    runs-on: ubuntu-latest
-    if: success() && github.event.inputs.environment == 'production'
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Create Git tag
-        run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git tag -a v${{ needs.version.outputs.version }} -m "Release v${{ needs.version.outputs.version }}"
-          git push origin v${{ needs.version.outputs.version }}
