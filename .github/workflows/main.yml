@@ -17,7 +17,10 @@ jobs:
         run: | 
           cd frontend
           npm install
-
+      - name: run test
+        run: | 
+          cd frontend
+          npm run test
   ci-backend:
     runs-on: ubuntu-latest
     steps:
@@ -32,3 +35,7 @@ jobs:
         run: | 
           cd backend
           npm install          
+      - name: run test
+        run: | 
+          cd backend
+          npm run test
