@@ -3,6 +3,7 @@ on:
 #dsparar el pipeline de forma manual
   workflow_dispatch:
   push:
+    branches: [ master ]
 jobs:
   ci:
     runs-on: ubuntu-latest
