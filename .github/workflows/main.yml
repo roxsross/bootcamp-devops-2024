@@ -8,6 +8,7 @@ env:
   REGISTRY: roxsross12
   REPOSITORY: wanderlust
   VERSION: v1
+  TELEGRAM_CHAT_ID: "-1001508340482"
     
 jobs:
   ci-frontend:
@@ -33,17 +34,60 @@ jobs:
     needs: [ci-frontend, cd-backend]
     steps:
       - uses: actions/checkout@v4
+      ## permiso a script
+      - name: Setup notification script
+        run: |
+            mkdir -p scripts
+            cp .github/scripts/notify.sh scripts/
+            chmod +x scripts/notify.sh
+            ls -la scripts/notify.sh
+      - name: Info repo
+        run: 
+          |
+            cd frontend
+            VERSION=$(jq -r '.version' ./package.json)
+            echo "VERSION=$VERSION" >> $GITHUB_ENV
+            echo "BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> $GITHUB_ENV
+            echo "COMMIT_SHA=$(echo $GITHUB_SHA | cut -c1-7)" >> $GITHUB_ENV  
+
       - uses: docker/login-action@v3.3.0
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       - uses: docker/setup-qemu-action@v3.2.0
       - uses: docker/setup-buildx-action@v3.7.1
+
+###notify
+      - name: Send Start Notification
+        if: success()
+        env:
+          BOT_URL: "https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage"
+        run: |
+          export BOT_URL="${BOT_URL}"
+          bash scripts/notify.sh "start" "${{ env.VERSION }}" "${{ env.COMMIT_SHA }}" "${{ env.BUILD_DATE }}"
+
       - name: Docker build
         run: |
           cd frontend
           docker build -t $REGISTRY/$REPOSITORY:frontend-$VERSION .
           docker push $REGISTRY/$REPOSITORY:frontend-$VERSION
+
+####notify
+      - name: Send Success Notification
+        if: success()
+        env:
+          BOT_URL: "https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage"
+        run: |
+          export BOT_URL="${BOT_URL}"
+          bash scripts/notify.sh "success" "${{ env.VERSION }}" "${{ env.COMMIT_SHA }}" "${{ env.BUILD_DATE }}"
+
+      - name: Send Failure Notification
+        if: failure()
+        env:
+          BOT_URL: "https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage"
+        run: |
+          export BOT_URL="${BOT_URL}"
+          bash scripts/notify.sh "failure" "${{ env.VERSION }}" "${{ env.COMMIT_SHA }}" "${{ env.BUILD_DATE }}"
 
         
   ci-backend:
