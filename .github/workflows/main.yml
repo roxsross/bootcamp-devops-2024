@@ -3,10 +3,10 @@ on:
   workflow_dispatch:
   push:
     branches: [ wanderlust ]
-    paths:
-      - 'frontend/**'
-      - 'backend/**'
-      - 'kubernetes/**'
+    # paths:
+    #   - 'frontend/**'
+    #   - 'backend/**'
+    #   - 'kubernetes/**'
 
 env:
   REGISTRY: roxsross12
