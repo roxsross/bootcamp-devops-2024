@@ -15,20 +15,17 @@ env:
 jobs:
   ci-frontend:
     runs-on: ubuntu-latest
+    
     steps:
       - uses: actions/checkout@v4
       - name: Setup Node.js environment
         uses: actions/setup-node@v4.1.0
         with: 
           node-version: '21'
-      - name: Install dependencies
+      - name: Install dependencies & unit test
+        working-directory: frontend
         run: | 
-          #cd frontend
-          ls 
           npm install
-      - name: run test
-        run: | 
-          #cd frontend
           npm run test
         continue-on-error: true
         
@@ -45,9 +42,9 @@ jobs:
             chmod +x scripts/notify.sh
             ls -la scripts/notify.sh
       - name: Info repo
+        working-directory: frontend
         run: 
           |
-            cd frontend
             VERSION=$(jq -r '.version' ./package.json)
             echo "VERSION=$VERSION" >> $GITHUB_ENV
             echo "BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> $GITHUB_ENV
@@ -70,8 +67,8 @@ jobs:
           bash scripts/notify.sh "start" "${{ env.VERSION }}" "${{ env.COMMIT_SHA }}" "${{ env.BUILD_DATE }}"
 
       - name: Docker build
+        working-directory: frontend
         run: |
-          cd frontend
           docker build -t $REGISTRY/$REPOSITORY:frontend-$VERSION .
           docker push $REGISTRY/$REPOSITORY:frontend-$VERSION
 
