@@ -26,20 +26,33 @@ jobs:
       - name: Generate version
         id: get_version
         run: |
-          # Obtener fecha actual en formato YYYYMMDD
           DATE=$(date +'%Y%m%d')
-          # Obtener número de commit corto
           COMMIT_SHA=$(git rev-parse --short HEAD)
-          # Número de commits en el día
           DAILY_BUILD=$(git rev-list --count HEAD --since="midnight")
-          # Crear versión con formato YYYYMMDD.BUILD.COMMIT
           VERSION="${DATE}.${DAILY_BUILD}.${COMMIT_SHA}"
           echo "version=${VERSION}" >> $GITHUB_OUTPUT
           echo "Versión generada: ${VERSION}"
 
+  notify-start:
+    needs: [version]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup notification script
+        run: |
+          mkdir -p scripts
+          cp .github/scripts/notify.sh scripts/
+          chmod +x scripts/notify.sh
+      - name: Send start notification
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          VERSION: ${{ needs.version.outputs.version }}
+          STATUS: "start"
+        run: ./scripts/notify.sh
+
   ci-frontend:
     runs-on: ubuntu-latest
-    needs: [version]
+    needs: [version, notify-start]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4.1.0
@@ -47,7 +60,6 @@ jobs:
           node-version: '21'
           cache: 'npm'
           cache-dependency-path: frontend/package-lock.json
-          
       - name: Install dependencies & run tests
         working-directory: frontend
         run: | 
@@ -57,7 +69,7 @@ jobs:
 
   ci-backend:
     runs-on: ubuntu-latest
-    needs: [version]
+    needs: [version, notify-start]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4.1.0
@@ -65,7 +77,6 @@ jobs:
           node-version: '21'
           cache: 'npm'
           cache-dependency-path: backend/package-lock.json
-          
       - name: Install dependencies & run tests
         working-directory: backend
         run: | 
@@ -80,16 +91,13 @@ jobs:
         app: [frontend, backend]
     steps:
       - uses: actions/checkout@v4
-      
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3.7.1
-        
       - name: Login to Docker Hub
         uses: docker/login-action@v3.3.0
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
@@ -108,45 +116,50 @@ jobs:
     runs-on: arc-runner-set
     steps:
       - uses: actions/checkout@v4
-      
-      - name: Setup notification script
-        run: |
-          mkdir -p scripts
-          cp .github/scripts/notify.sh scripts/
-          chmod +x scripts/notify.sh
-          
       - name: Install kubectl
         uses: Azure/setup-kubectl@v4.0.0
         with:
           version: 'latest'
-          
       - name: Update kubernetes manifests
         run: |
-          # Actualizar tags de imágenes en los archivos de deployment
           sed -i "s|image: ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:frontend-.*|image: ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:frontend-${{ needs.version.outputs.version }}|" kubernetes/frontend.yaml
           sed -i "s|image: ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:backend-.*|image: ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:backend-${{ needs.version.outputs.version }}|" kubernetes/backend.yaml
-          
       - name: Deploy to Kubernetes
         run: |
           kubectl apply -f kubernetes/mongodb.yaml
           kubectl apply -f kubernetes/redis.yaml
           kubectl apply -f kubernetes/backend.yaml
           kubectl apply -f kubernetes/frontend.yaml
-          
       - name: Verify deployment
         run: |
           kubectl rollout status deployment/frontend
           kubectl rollout status deployment/backend
-          
-      - name: Notify deployment status
-        if: always()
+
+  notify-result:
+    needs: [version, deploy]
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup notification script
+        run: |
+          mkdir -p scripts
+          cp .github/scripts/notify.sh scripts/
+          chmod +x scripts/notify.sh
+      - name: Send result notification
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           VERSION: ${{ needs.version.outputs.version }}
+          STATUS: ${{ needs.deploy.result == 'success' && 'success' || 'failure' }}
         run: ./scripts/notify.sh
 
+  create-tag:
+    needs: [version, deploy]
+    runs-on: ubuntu-latest
+    if: success()
+    steps:
+      - uses: actions/checkout@v4
       - name: Create Git tag
-        if: success()
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
