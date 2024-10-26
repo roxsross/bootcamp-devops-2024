@@ -112,7 +112,6 @@ send_telegram_notification() {
 ✨ *Deployment Details:*
 ▫️ *Duration:* \`$(format_duration "$start_time")\`
 ▫️ *Build Date:* \`${build_date}\`
-▫️ *Environment:* \`${GITHUB_EVENT_NAME}\`
 
 🎉 Deployment completed successfully!"
             ;;

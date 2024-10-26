@@ -33,30 +33,15 @@ jobs:
           DATE=$(date +'%Y%m%d')
           COMMIT_SHA=$(git rev-parse --short HEAD)
           DAILY_BUILD=$(git rev-list --count HEAD --since="midnight")
-          VERSION="${DATE}.${DAILY_BUILD}.${COMMIT_SHA}"
+          VERSION=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
           echo "version=${VERSION}" >> $GITHUB_OUTPUT
           echo "commit_sha=${COMMIT_SHA}" >> $GITHUB_OUTPUT
           echo "build_date=$(date -u +'%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_OUTPUT
           echo "Versión generada: ${VERSION}"
 
-  notify-start:
-    needs: [version]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Send start notification
-        env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          VERSION: ${{ needs.version.outputs.version }}
-          COMMIT_SHA: ${{ needs.version.outputs.commit_sha }}
-          BUILD_DATE: ${{ needs.version.outputs.build_date }}
-        run: |
-          chmod +x .github/scripts/notify.sh
-          .github/scripts/notify.sh "start" "$VERSION" "$COMMIT_SHA" "$BUILD_DATE"
-
   ci-frontend:
     runs-on: ubuntu-latest
-    needs: [version, notify-start]
+    needs: [version]
     steps:
       - uses: actions/checkout@v4
       
@@ -154,7 +139,7 @@ jobs:
           kubectl apply -f kubernetes/backend.yaml
           kubectl apply -f kubernetes/frontend.yaml
           
-  notify-result:
+  notify:
     needs: [version, deploy]
     runs-on: ubuntu-latest
     if: always()
