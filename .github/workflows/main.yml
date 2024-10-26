@@ -34,7 +34,7 @@ jobs:
           COMMIT_SHA=$(git rev-parse --short HEAD)
           DAILY_BUILD=$(git rev-list --count HEAD --since="midnight")
           VERSION=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
-          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+          echo "version=${VERSION}-${COMMIT_SHA}" >> $GITHUB_OUTPUT
           echo "commit_sha=${COMMIT_SHA}" >> $GITHUB_OUTPUT
           echo "build_date=$(date -u +'%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_OUTPUT
           echo "Versión generada: ${VERSION}"
