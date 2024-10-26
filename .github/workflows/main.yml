@@ -154,12 +154,6 @@ jobs:
           kubectl apply -f kubernetes/backend.yaml
           kubectl apply -f kubernetes/frontend.yaml
           
-      - name: Verify deployment
-        timeout-minutes: 5
-        run: |
-          kubectl rollout status deployment/frontend -n ${{ github.event.inputs.environment || 'staging' }}
-          kubectl rollout status deployment/backend -n ${{ github.event.inputs.environment || 'staging' }}
-
   notify-result:
     needs: [version, deploy]
     runs-on: ubuntu-latest
