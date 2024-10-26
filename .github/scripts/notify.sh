@@ -103,8 +103,6 @@ send_telegram_notification() {
             message+="
 
 🔍 *Pending Steps:*
-▫️ Security Scan
-▫️ Unit Tests
 ▫️ Build Images
 ▫️ Deploy to K8s"
             ;;
